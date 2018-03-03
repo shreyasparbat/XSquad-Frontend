@@ -11,6 +11,7 @@ import HomeScreen from './app/home/HomeScreen'
 import SavedScreen from './app/saved/SavedScreen';
 import SquadScreen from './app/squad/SquadScreen';
 import ProfileScreen from './app/profile/ProfileScreen';
+import SplashScreen from './app/screens/SplashScreen';
 
 //import SettingsScreen from './app/screens/SettingsScreen';
 //import FAQScreen from './app/screens/FAQScreen';
@@ -46,6 +47,9 @@ const DrawerNavigation = DrawerNavigator(
 );
 
 const StackNavigation = StackNavigator({
+  SplashScreen: {
+    screen: SplashScreen
+  },
   LoginScreen: {
     screen: LoginScreen,
     navigationOptions: {
@@ -72,18 +76,6 @@ const StackNavigation = StackNavigator({
 );
 
 export default () => <Root><StackNavigation /></Root>;
-
-/* export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
-  }
-} */
 
 const styles = StyleSheet.create({
   container: {

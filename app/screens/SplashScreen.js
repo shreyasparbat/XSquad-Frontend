@@ -1,33 +1,22 @@
-/*
- * This screen is deprecated and should not be used. 
- * The app is currently using Expo's configuration to create a splash screen.
- * TODO: Delete this screen on next cleanup
- */
-
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  Image,
-  View
-} from 'react-native';
+import { Platform, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, AsyncStorage, Alert, BackHandler, } from 'react-native';
 import { AppLoading, Font } from 'expo';
+import { Toast } from 'native-base';
 
-export default class Splash extends Component {
-  state = {
-    fontLoaded: false,
-  };
+export default class SplashScreen extends Component {
+  constructor(props) {
+    super(props);
 
-
-  componentWillMount() {
-    const navigator = this.props.navigation;
-    setTimeout(() => {
-      navigator.navigate('Home')
-    }, 1000);     //<-- Time until it jumps to "MainView"
+    this.state = {
+      fontLoaded: false,
+    };
   }
 
   async componentDidMount() {
+    this.getAuth();
+    BackHandler.addEventListener('backPress', this.handleBackButton);
     await Font.loadAsync({
+      'Roboto_medium': require('../resources/fonts/Roboto/Roboto-Medium.ttf'),
       'Open_Sans': require('../resources/fonts/Open_Sans/OpenSans-Regular.ttf'),
       'Open_Sans_bold': require('../resources/fonts/Open_Sans/OpenSans-Bold.ttf'),
       'Open_Sans_light': require('../resources/fonts/Open_Sans/OpenSans-Light.ttf'),
@@ -36,53 +25,40 @@ export default class Splash extends Component {
     this.setState({ fontLoaded: true });
   }
 
-  render(){
-    return(
-      <View style={styles.wrapper}>      
-      {
-        this.state.fontLoaded ? ( 
-          <View style={styles.titleWrapper}>
-            <Image 
-            source={require('../resources/img/haste-logo.png')}
-            style={styles.logo}/>
+  componentWillUnmount() {
+    BackHandler.removeEventListener('backPress', this.handleBackButton);
+  }
+
+  handleBackButton() {
+    return true;
+  }
+
+  onError(errMsg) {
+    Toast.show({
+      text: errMsg,
+      position: 'bottom',
+      buttonText: 'Okay'
+    })
+  }
+
+  render() {
+    return (
+      this.state.fontLoaded ? (
+        <KeyboardAvoidingView behavior="padding" style={style_theme.styles.wrapper}>
+
+          <View style={style_theme.styles.logoContainer}>
+            <Image
+              source={require('../resources/img/xsquad-logo.png')}
+              style={style_theme.styles.logoSmall} />
+
+            <Text style={style_theme.styles.h1}>Welcome to Haste</Text>
+            <Text style={style_theme.styles.h1}>Shopping Made Easy</Text>
           </View>
-        ) : null
-      }
-      </View>
+          {/* </LinearGradient>      */}
+        </KeyboardAvoidingView>
+      ) : null
     );
+
+
   }
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: '#eee',
-    flex:1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  
-  title: {
-    fontFamily: 'Open_Sans_bold',
-    color: 'white',
-    fontSize: 40,
-    fontWeight: 'bold'
-  },
-  
-  subtitle: {
-    fontFamily: 'Open_Sans_bold',
-    color: 'white',
-    fontStyle: 'italic',
-    fontWeight: '200'
-  },
-  
-  titleWrapper: {
-    flex:1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  logo: {
-    width: 250,
-    height: 250,
-  },
-});
