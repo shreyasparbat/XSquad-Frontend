@@ -6,26 +6,15 @@ import { Root, Icon, Container, Header, Content, Body } from 'native-base';
 import { StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation';
 
 import LoginScreen from './app/login/LoginScreen';
-import LoginWithEmailScreen from './app/login/LoginWithEmailScreen';
-import RegisterScreen from './app/login/RegisterScreen';
+//import LoginWithEmailScreen from './app/login/LoginWithEmailScreen';
+//import RegisterScreen from './app/login/RegisterScreen';
 
-import BasketSummaryScreen from './app/cart/BasketSummaryScreen'
-import CartScreen from './app/cart/CartScreen';
-
-import AddCardScreen from './app/payment/AddCardScreen';
-import PaymentOptionScreen from './app/payment/PaymentOptionScreen';
-import PaymentScreen from './app/payment/PaymentScreen';
-import ReceiptScreen from './app/payment/ReceiptScreen';
-
-import TransactionDetailsScreen from './app/transactions/TransactionDetailsScreen';
-import TransactionListScreen from './app/transactions/TransactionListScreen';
-
+import HomeScreen from './app/home/HomeScreen'
+import SquadScreen from './app/squad/SquadScreen';
 import ProfileScreen from './app/profile/ProfileScreen';
 
-import SplashScreen from './app/screens/SplashScreen';
-import ReferralScreen from './app/screens/ReferralScreen';
-import SettingsScreen from './app/screens/SettingsScreen';
-import FAQScreen from './app/screens/FAQScreen';
+//import SettingsScreen from './app/screens/SettingsScreen';
+//import FAQScreen from './app/screens/FAQScreen';
 
 import DrawerContent from './app/components/DrawerContent';
 
