@@ -1,9 +1,9 @@
 {
-  "name": "XSquadSG",
+  "name": "XSquadSg",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-native-scripts": "1.11.1",
+    "react-native-scripts": "1.10.0",
     "jest-expo": "25.0.0",
     "react-test-renderer": "16.2.0"
   },
@@ -19,9 +19,22 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "eslint": "^4.16.0",
     "expo": "^25.0.0",
-    "npm": "^4.6.1",
+    "native-base": "^2.3.7",
+    "radio-button-react-native": "^1.1.6",
     "react": "16.2.0",
-    "react-native": "0.52.0"
+    "react-native": "0.52.0",
+    "react-native-datepicker": "^1.6.0",
+    "react-native-extended-stylesheet": "^0.8.0",
+    "react-native-keyboard-aware-scroll-view": "^0.4.3",
+    "react-native-linear-gradient": "^2.4.0",
+    "react-native-qrcode": "^0.2.6",
+    "react-native-scripts": "^1.10.0",
+    "react-native-simple-radio-button": "^2.7.1",
+    "react-native-swipeable": "^0.6.0",
+    "react-native-swipeout": "^2.3.3",
+    "react-navigation": "^1.0.0-beta.27",
+    "util": "*"
   }
 }

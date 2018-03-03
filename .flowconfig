@@ -47,7 +47,7 @@ node_modules/expo/flow/
 [options]
 emoji=true
 
-module.system=haste
+module.system=xsquad
 
 module.file_ext=.js
 module.file_ext=.jsx
