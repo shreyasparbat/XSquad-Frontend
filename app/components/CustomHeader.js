@@ -18,12 +18,11 @@ class CustomHeader extends React.Component {
             </View>
         )
     }
-
     _showIcon(){
         return(
             <View style={style_header.styles.body}>
                 <Title>
-                    <Image style={style_header.styles.headerIcon} source={require("../resources/img/haste-logo.png")} />
+                    <Image style={style_header.styles.headerIcon} source={require("../resources/img/xsquad-logo-black.png")} />
                 </Title>
             </View>
         )

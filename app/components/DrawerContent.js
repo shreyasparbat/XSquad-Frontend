@@ -50,7 +50,7 @@ export default class DrawerContent extends Component {
                             source={ 
                                 this.state.userData.avatar_file_name ? 
                                 (this.state.userData.avatar_file_name.indexOf('http') != -1? {uri: this.state.userData.avatar_file_name}:{uri: api.API_SERVER_URL+this.state.userData.avatar_file_name}) : 
-                                require("../resources/img/xsquad-logo.png")
+                                require("../resources/img/xsquad-logo-black.png")
                             } 
                         />
                     </View>

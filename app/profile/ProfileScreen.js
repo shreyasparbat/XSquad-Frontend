@@ -11,4 +11,20 @@ export default class ProfileScreen extends Component {
             fontLoaded: false,
         };
     }
+
+    render() {
+        return (
+
+            <Container style={style_theme.styles.scrollContainter}>
+                <CustomHeader menu='yes' nav={this.props.navigation} />
+                <View style={main_body.styles.SpotOfTheWeek}></View>
+
+                <View style={main_body.styles.SpotOfTheWeek}>
+                    <Image source={require("../resources/img/Sub-Header.png")} />
+                </View>
+
+            </Container>
+
+        );
+    }
 }

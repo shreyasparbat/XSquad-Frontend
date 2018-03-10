@@ -158,14 +158,17 @@ export const styles = StyleSheet.create({
 
     scrollContainter: {
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white',
     },
 
     EatDrinkDo: {
-       // width: 6,
+        // width: 6,
         //height: 54,
         color: '#ce003f',
         //fontFamily: 'Open_Sans',
-       // fontSize: 45,
-      //  fontWeight: "700"
+        // fontSize: 45,
+        //  fontWeight: "700"
     }
 })

@@ -24,12 +24,12 @@ export const styles = StyleSheet.create({
     headerIcon:{
         ...Platform.select({
             ios: { 
-                width: 50,
-                height: 50
+                width: 138,
+                height: 35
             },
             android: { //SET ICON SIZE FOR ANDROID HERE
-                width: 100,
-                height: 100,
+                width: 176,
+                height: 70,
             }
         })
         
