@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
         fontFamily: 'Open_Sans_light',
         fontSize: v.P_FONTSIZE,
     },
-    
+
     errorText: {
         fontFamily: 'Open_Sans',
         fontSize: v.P_FONTSIZE,
@@ -43,26 +43,24 @@ export const styles = StyleSheet.create({
     },
 
     wrapper: {
-        flex:1,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#eee',
 
     },
 
-    logoContainer: {
-        height: Dimensions.get('window').height*0.35,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        marginBottom: 50,
-        marginTop: 50,
-    },
+    /*     logoContainer: {
+            height: Dimensions.get('window').height*0.35,
+            justifyContent: "flex-end",
+            alignItems: 'top',
+            marginBottom: 50,
+            marginTop: 50,
+        }, */
 
     logoSmall: {
-        marginLeft: -40,
-        width: 230,
-        height: 230,
-        marginBottom: -30,
+        width: 138,
+        height: 35,
     },
 
     button: {
@@ -123,7 +121,7 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         color: 'white',
         textAlign: 'left',
-        flex:5,
+        flex: 5,
     },
 
     buttonTextBlack: {
@@ -131,11 +129,11 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         color: 'black',
         textAlign: 'left',
-        flex:5,
+        flex: 5,
     },
 
     iconContainer: {
-        flex:1,
+        flex: 1,
         alignItems: 'flex-end',
     },
 
@@ -157,4 +155,17 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         paddingLeft: 20
     },
+
+    scrollContainter: {
+        flex: 1,
+    },
+
+    EatDrinkDo: {
+       // width: 6,
+        //height: 54,
+        color: '#ce003f',
+        //fontFamily: 'Open_Sans',
+       // fontSize: 45,
+      //  fontWeight: "700"
+    }
 })

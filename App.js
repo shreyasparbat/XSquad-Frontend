@@ -47,27 +47,16 @@ const DrawerNavigation = DrawerNavigator(
 );
 
 const StackNavigation = StackNavigator({
-  SplashScreen: {
-    screen: SplashScreen
-  },
-  LoginScreen: {
-    screen: LoginScreen,
-    navigationOptions: {
-      gesturesEnabled: false,
-    }
-  },
-  LoginWithEmailScreen: {
-    screen: LoginWithEmailScreen
-  },
-  RegisterScreen: {
-    screen: RegisterScreen
-  },
   Home: {
     screen: DrawerNavigation,
     navigationOptions: {
       gesturesEnabled: false,
     }
+  },
+  SplashScreen: {
+    screen: SplashScreen
   }
+  
 },
   {
     //initialRouteName: 'TransactionDetailsScreen',

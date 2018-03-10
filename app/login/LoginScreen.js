@@ -26,8 +26,6 @@ export default class LoginScreen extends Component {
     }
 
     async componentDidMount() {
-        this.getAuth();
-        BackHandler.addEventListener('backPress', this.handleBackButton);
         await Font.loadAsync({
             'Roboto_medium': require('../resources/fonts/Roboto/Roboto-Medium.ttf'),
             'Open_Sans': require('../resources/fonts/Open_Sans/OpenSans-Regular.ttf'),
@@ -36,6 +34,7 @@ export default class LoginScreen extends Component {
         });
 
         this.setState({ fontLoaded: true });
+
     }
 
     componentWillUnmount() {
