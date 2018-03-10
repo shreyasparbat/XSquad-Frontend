@@ -13,9 +13,7 @@ import {
 } from 'react-native';
 import { AppLoading, Font } from 'expo';
 import { Icon, Container, Content, Left, Right, List, ListItem, Button, connectStyle, Footer, Toast } from 'native-base';
-import EatScreen from './EatScreen';
-import DrinkScreen from './DrinkScreen';
-import DoScreen from './DoScreen';
+
 import CustomHeader from '../components/CustomHeader';
 var style_theme = require('../stylesheets/theme');
 var main_body = require('../stylesheets/mainBody');
