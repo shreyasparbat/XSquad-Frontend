@@ -43,7 +43,7 @@ export default class DrawerContent extends Component {
         return(
             <View>
                 <View style={style_drawer.styles.header} >
-                    <View style={style_drawer.styles.profilePicContainer}>
+{/*                     <View style={style_drawer.styles.profilePicContainer}>
                         <Image 
                             style={style_drawer.styles.profilePic} 
                             resizeMode='contain' 
@@ -57,7 +57,7 @@ export default class DrawerContent extends Component {
                     <View style={style_drawer.styles.profileTextContainer}>
                         <Text style={style_drawer.styles.profileTextName}> {this.state.userData.fullname} </Text>
                         <Text style={style_drawer.styles.profileTextEmail}> {this.state.userData.username} </Text>
-                    </View>
+                    </View> */}
                 </View>
                     <View style={{
                         height: v.WINDOW_HEIGHT - 140, 
@@ -79,7 +79,7 @@ export default class DrawerContent extends Component {
                                     style={style_drawer.styles.listItemIcon} 
                                     size={24}
                                 />  */}
-                                <Text style={{color: '#ccc', paddingLeft: 20}}>
+                                <Text style={{color: '#c6c6c6', paddingLeft: 20}}>
                                     App Version {packageJson.version}
                                 </Text>
                             </View>

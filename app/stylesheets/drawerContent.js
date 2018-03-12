@@ -59,7 +59,8 @@ export const styles = StyleSheet.create({
 
     listItemText: {
         fontWeight: 'bold',
-        paddingLeft: 18
+        paddingLeft: 18,
+        color : '#c6c6c6'
     },
 
     sideNav: {

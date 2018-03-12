@@ -40,7 +40,14 @@ export const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         zIndex: 1000000,
     },
+    
+    settingsHeaderStyle:{
+        backgroundColor: '#ce003f',
+        width: Dimensions.get('window').width,
+        zIndex: 1000000,
+    },
 
+    
     left:{
         flex: 1,
         alignItems: 'center',

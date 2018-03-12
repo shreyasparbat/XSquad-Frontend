@@ -31,48 +31,53 @@ export default class HomeScreen extends Component {
     render() {
         return (
 
-            <Container style={style_theme.styles.scrollContainter}>
+            <Container>
+                <View style={main_body.styles.WhiteSpace}></View>
                 <CustomHeader menu='yes' nav={this.props.navigation} />
-                <View style={main_body.styles.SpotOfTheWeek}></View>
 
-                <View style={main_body.styles.SpotOfTheWeek}>
-                    <Image source={require("../resources/img/ChooseSomething.png")} />
-                </View>
+                <Container style={style_theme.styles.scrollContainter}>
+                    <View style={main_body.styles.WhiteSpace}></View>
+                    <View style={main_body.styles.ChooseSomething}>
+                        <Text style={main_body.styles.chooseSomethingFont}>Choose something to do</Text>
+                    </View>
+                    <View style={main_body.styles.WhiteSpace}></View>
 
-                <View style={main_body.styles.SpotOfTheWeek}></View>
+                    <Container>
+                        <View style={main_body.styles.SpotOfTheWeek}>
+                            <Text style={style_theme.styles.SpotOfTheWeekFont}>Food spot of the week</Text>
+                        </View>
+                        <View style={main_body.styles.EatDrinkDoContainer}>
+                            <Image style={main_body.styles.ActivityImage} source={require("../resources/img/ZamZam.png")} />
 
-                <View style={main_body.styles.SpotOfTheWeek}>
-                    <Image source={require("../resources/img/FoodSpotOfTheWeek.png")} />
-                </View>
-                <View style={main_body.styles.EatDrinkDoContainer}>
-                    <Image style={main_body.styles.ActivityImage} source={require("../resources/img/ZamZam.png")} />
-                    <Text style={style_theme.styles.EatDrinkDo}>Eat </Text>
-                </View>
-                <View style={main_body.styles.SpotOfTheWeek}></View>
-                <View style={main_body.styles.SpotOfTheWeek}></View>
+                        </View>
+                        <View style={main_body.styles.WhiteSpace}></View>
+                        <View style={main_body.styles.WhiteSpace}></View>
+                    </Container>
+
+                    <Container>
+                        <View style={main_body.styles.SpotOfTheWeek}>
+                            <Text style={style_theme.styles.SpotOfTheWeekFont}>Drink spot of the week </Text>
+                        </View>
+                        <View style={main_body.styles.EatDrinkDoContainer}>
+                            <Image style={main_body.styles.ActivityImage} source={require("../resources/img/SmooBar.png")} />
+                        </View>
+                        <View style={main_body.styles.WhiteSpace}></View>
+                        <View style={main_body.styles.WhiteSpace}></View>
+                    </Container>
+
+                    <Container>
+                        <View style={main_body.styles.SpotOfTheWeek}>
+                            <Text style={style_theme.styles.SpotOfTheWeekFont}>Activity of the week</Text>
+                        </View>
+                        <View style={main_body.styles.EatDrinkDoContainer}>
+                            <Image style={main_body.styles.ActivityImage} source={require("../resources/img/EastCoastParkCycling.png")} />
+                        </View>
+                        <View style={main_body.styles.WhiteSpace}></View>
+                        <View style={main_body.styles.WhiteSpace}></View>
+                    </Container>
+                </Container>
 
 
-
-                <View style={main_body.styles.SpotOfTheWeek}>
-                    <Image source={require("../resources/img/DrinkSpotOfTheWeek.png")} />
-                </View>
-                <View style={main_body.styles.EatDrinkDoContainer}>
-                    <Text style={style_theme.styles.EatDrinkDo}>Drink </Text>
-                    <Image style={main_body.styles.ActivityImage} source={require("../resources/img/SmooBar.png")} />
-                </View>
-                <View style={main_body.styles.SpotOfTheWeek}></View>
-                <View style={main_body.styles.SpotOfTheWeek}></View>
-
-
-
-                <View style={main_body.styles.SpotOfTheWeek}>
-                    <Image source={require("../resources/img/ActivityOfTheWeek.png")} />
-                </View>
-                <View style={main_body.styles.EatDrinkDoContainer}>
-                    <Text style={style_theme.styles.EatDrinkDo}>Do </Text>
-                </View>
-                <View style={main_body.styles.SpotOfTheWeek}></View>
-                <View style={main_body.styles.SpotOfTheWeek}></View>
 
 
             </Container>

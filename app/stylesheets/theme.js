@@ -159,7 +159,7 @@ export const styles = StyleSheet.create({
     scrollContainter: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         backgroundColor: 'white',
     },
 
@@ -170,5 +170,7 @@ export const styles = StyleSheet.create({
         //fontFamily: 'Open_Sans',
         // fontSize: 45,
         //  fontWeight: "700"
-    }
+    },
+
+
 })

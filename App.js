@@ -11,6 +11,7 @@ import HomeScreen from './app/home/HomeScreen'
 import SavedScreen from './app/saved/SavedScreen';
 import SquadScreen from './app/squad/SquadScreen';
 import ProfileScreen from './app/profile/ProfileScreen';
+import SettingsScreen from './app/settings/SettingsScreen';
 import SplashScreen from './app/screens/SplashScreen';
 
 //import SettingsScreen from './app/screens/SettingsScreen';
@@ -29,11 +30,14 @@ const DrawerNavigation = DrawerNavigator(
     Saved: {
       screen: SavedScreen
     },
-    Squads: {
+    "Your Squads": {
       screen: SquadScreen
     },
     Profile: {
       screen: ProfileScreen
+    },
+    Settings: {
+      screen: SettingsScreen
     }
   },
   {
@@ -42,6 +46,8 @@ const DrawerNavigation = DrawerNavigator(
     contentComponent: DrawerContent,
     contentOptions: {
       activeTintColor: v.HASTE_COLOR,
+      //initialRouteName: 'TransactionDetailsScreen',
+      //headerMode: "none"
     }
   }
 );
@@ -56,11 +62,11 @@ const StackNavigation = StackNavigator({
   SplashScreen: {
     screen: SplashScreen
   }
-  
+
 },
   {
     //initialRouteName: 'TransactionDetailsScreen',
-    headerMode: 'none'
+    headerMode: "none",
   }
 );
 
