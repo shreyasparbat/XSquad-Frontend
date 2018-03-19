@@ -2,11 +2,11 @@ import { Dimensions, Platform, StyleSheet } from 'react-native';
 require('./variables');
 
 export const styles = StyleSheet.create({
-    EatDrinkDoContainer: {
+    EatDrinkDoImageContainer: {
         alignItems: "center",
         width: 345,
         height: 120,
-        flex: 5,
+        //flex: 5,
         justifyContent: "center",
         backgroundColor: 'white',
         //shadowColor: 'rgba(0, 0, 0, 0.16)',
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderWidth: 1,
         borderRadius: 20,
-        opacity: 0.25,
+        //opacity: 0.25,
     },
 
     SpotOfTheWeek: {
@@ -24,10 +24,10 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         width: 345,
         height: 22,
-        borderColor: '#ce003f',
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderRadius: 20,
+        //borderColor: '#ce003f',
+        //borderStyle: 'solid',
+        //borderWidth: 1,
+        //borderRadius: 20,
         backgroundColor: '#ffffff',
     },
 
@@ -44,26 +44,26 @@ export const styles = StyleSheet.create({
     },
 
     SpotOfTheWeekFont: {
-        alignItems: "center",
+        textAlign: "center",
         justifyContent: "center",
-        width: 211,
+        width: 345,
         height: 18,
         color: '#ce003f',
         //fontFamily: 'Open_Sans',
-        fontSize: 15,
+        fontSize: 14,
         fontWeight: "700",
         letterSpacing: 3,
     },
 
     chooseSomethingFont: {
 
-        alignItems: "center",
+        textAlign: "center",
         //justifyContent: "center",
-        width: 211,
+        width: 345,
         height: 18,
         color: '#ffffff',
         //fontFamily: 'Open_Sans',
-        fontSize: 15,
+        fontSize: 14,
         fontWeight: "700",
         letterSpacing: 2,
         /*  
@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
     },
 
     settingsHeaderFont: {
-        alignItems: "center",
+        textAlign: "center",
         justifyContent: "center",
         width: 211,
         height: 25,
@@ -137,5 +137,39 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: "700",
         letterSpacing: 3,
+    },
+
+    goButton: {
+        /*         
+        backgroundColor: '#ce003f',
+        borderColor: '#ce003f',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderRadius: 5,
+        height: 20,
+        width: 30, 
+        */
+        alignItems: "center",
+        justifyContent: "center",
+        width: 59,
+        height: 26,
+        borderRadius: 5,
+        borderColor: '#ce003f',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        backgroundColor: '#ffffff',
+    },
+
+    buttonText: {
+        //fontFamily: 'Open_Sans',
+        height: 18,
+        fontSize: 15,
+        color: 'black',
+        alignItems: "center",
+        //flex: 5,
+    },
+
+    centeredText: {
+        //textAlign: 'center',
     },
 })

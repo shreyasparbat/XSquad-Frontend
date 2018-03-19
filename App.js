@@ -8,11 +8,19 @@ import LoginWithEmailScreen from './app/login/LoginWithEmailScreen';
 import RegisterScreen from './app/login/RegisterScreen';
 
 import HomeScreen from './app/home/HomeScreen'
+import EatScreen from './app/home/EatScreen'
+import DrinkScreen from './app/home/DrinkScreen'
+import DoScreen from './app/home/DoScreen'
+
 import SavedScreen from './app/saved/SavedScreen';
 import SquadScreen from './app/squad/SquadScreen';
 import ProfileScreen from './app/profile/ProfileScreen';
 import SettingsScreen from './app/settings/SettingsScreen';
 import SplashScreen from './app/screens/SplashScreen';
+
+
+
+
 
 //import SettingsScreen from './app/screens/SettingsScreen';
 //import FAQScreen from './app/screens/FAQScreen';
@@ -61,7 +69,16 @@ const StackNavigation = StackNavigator({
   },
   SplashScreen: {
     screen: SplashScreen
-  }
+  },
+  EatScreen: {
+    screen: EatScreen
+  },
+  DrinkScreen: {
+    screen: DrinkScreen
+  },
+  DoScreen: {
+    screen: DoScreen
+  },
 
 },
   {

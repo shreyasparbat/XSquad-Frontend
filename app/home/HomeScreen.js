@@ -20,6 +20,8 @@ import CustomHeader from '../components/CustomHeader';
 var style_theme = require('../stylesheets/theme');
 var main_body = require('../stylesheets/mainBody');
 
+
+
 export default class HomeScreen extends Component {
     constructor(props) {
         super(props);
@@ -29,52 +31,60 @@ export default class HomeScreen extends Component {
         };
     }
     render() {
+        const { navigate } = this.props.navigation;
+
         return (
 
             <Container>
                 <View style={main_body.styles.WhiteSpace}></View>
                 <CustomHeader menu='yes' nav={this.props.navigation} />
-
                 <Container style={style_theme.styles.scrollContainter}>
-                    <View style={main_body.styles.WhiteSpace}></View>
                     <View style={main_body.styles.ChooseSomething}>
                         <Text style={main_body.styles.chooseSomethingFont}>Choose something to do</Text>
                     </View>
-                    <View style={main_body.styles.WhiteSpace}></View>
 
                     <Container>
                         <View style={main_body.styles.SpotOfTheWeek}>
-                            <Text style={style_theme.styles.SpotOfTheWeekFont}>Food spot of the week</Text>
+                            <Text style={main_body.styles.SpotOfTheWeekFont}>Food spot of the week</Text>
                         </View>
-                        <View style={main_body.styles.EatDrinkDoContainer}>
-                            <Image style={main_body.styles.ActivityImage} source={require("../resources/img/ZamZam.png")} />
-
+                        <View>
+                            <Image style={main_body.styles.ActivityImage} source={require("../resources/img/singapore-zam-zam-restaurant.jpg")} />
                         </View>
-                        <View style={main_body.styles.WhiteSpace}></View>
-                        <View style={main_body.styles.WhiteSpace}></View>
+                        <View>
+                            <TouchableOpacity style={main_body.styles.goButton} onPress={() => navigate('EatScreen')}>
+                                <Text style={[main_body.styles.buttonText]}>Go</Text>
+                            </TouchableOpacity>
+                        </View>
                     </Container>
 
                     <Container>
                         <View style={main_body.styles.SpotOfTheWeek}>
-                            <Text style={style_theme.styles.SpotOfTheWeekFont}>Drink spot of the week </Text>
+                            <Text style={main_body.styles.SpotOfTheWeekFont}>Drink spot of the week </Text>
                         </View>
-                        <View style={main_body.styles.EatDrinkDoContainer}>
-                            <Image style={main_body.styles.ActivityImage} source={require("../resources/img/SmooBar.png")} />
+                        <View>
+                            <Image style={main_body.styles.ActivityImage} source={require("../resources/img/Smoobar.jpg")} />
                         </View>
-                        <View style={main_body.styles.WhiteSpace}></View>
-                        <View style={main_body.styles.WhiteSpace}></View>
+                        <View>
+                            <TouchableOpacity style={main_body.styles.goButton} onPress={() => navigate('DrinkScreen')}>
+                                <Text style={[main_body.styles.buttonText]}>Go</Text>
+                            </TouchableOpacity>
+                        </View>
                     </Container>
 
                     <Container>
                         <View style={main_body.styles.SpotOfTheWeek}>
-                            <Text style={style_theme.styles.SpotOfTheWeekFont}>Activity of the week</Text>
+                            <Text style={main_body.styles.SpotOfTheWeekFont}>Activity of the week</Text>
                         </View>
-                        <View style={main_body.styles.EatDrinkDoContainer}>
-                            <Image style={main_body.styles.ActivityImage} source={require("../resources/img/EastCoastParkCycling.png")} />
+                        <View>
+                            <Image style={main_body.styles.ActivityImage} source={require("../resources/img/ecpstraitstimes.jpg")} />
                         </View>
-                        <View style={main_body.styles.WhiteSpace}></View>
-                        <View style={main_body.styles.WhiteSpace}></View>
+                        <View>
+                            <TouchableOpacity style={main_body.styles.goButton} onPress={() => navigate('DoScreen')}>
+                                <Text style={[main_body.styles.buttonText]}>Go</Text>
+                            </TouchableOpacity>
+                        </View>
                     </Container>
+
                 </Container>
 
 

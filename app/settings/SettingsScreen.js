@@ -60,16 +60,6 @@ export default class SavedScreen extends Component {
                         </View>
                     </Container>
 
-
-
-
-
-
-
-
-
-
-
                 </Container>
             </Container>
 
