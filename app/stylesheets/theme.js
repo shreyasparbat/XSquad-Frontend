@@ -103,6 +103,36 @@ export const styles = StyleSheet.create({
         marginBottom: 20,
     },
 
+    buttonBlueLogin: {
+        height: v.BUTTON_HEIGHT,
+        width: v.BUTTON_WIDTH,
+        flexDirection: "row",
+        alignItems: 'center',
+        padding: 20,
+        marginBottom: 20,
+        backgroundColor: "#2e5fb3",
+        borderRadius: 5
+    },
+
+    buttonBlueText: {
+        fontFamily: 'Open_Sans',
+        fontSize: 16,
+        color: 'white',
+        textAlign: 'center',
+        flex: 5,
+    },
+
+    buttonRegisterSubmit: {
+        height: v.BUTTON_HEIGHT,
+        width: v.BUTTON_WIDTH,
+        flexDirection: "row",
+        alignItems: 'center',
+        padding: 20,
+        marginBottom: 20,
+        backgroundColor: "#2e5fb3",
+        borderRadius: 5
+    },
+
     buttonFacebook: {
         backgroundColor: v.FACEBOOK_COLOR,
         borderColor: v.FACEBOOK_COLOR_DARK,

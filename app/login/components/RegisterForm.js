@@ -42,10 +42,6 @@ export default class RegisterForm extends Component {
             emailValid: null,
             emailErrorMessage: '',
 
-            mobile: null,
-            mobileValid: null,
-            mobileErrorMessage: '',
-
             password: null,
             passwordValid: null,
             passwordErrorMessage: '',
@@ -54,9 +50,10 @@ export default class RegisterForm extends Component {
             passwordcValid: null,
             passwordcErrorMessage: '',
 
-            dob: null,
-            dobValid: null,
-            dobErrorMessage: '',
+
+            mobileNumber: null,
+            mobileNumberValid: null,
+            mobileNumberErrorMessage: '',
 
             gender: 1,
 
@@ -73,22 +70,22 @@ export default class RegisterForm extends Component {
             text: errMsg,
             position: 'bottom',
             buttonText: 'Okay'
-          })
+        })
     }
 
 
     render() {
         return (
             <KeyboardAwareScrollView>
-                <View style={[style_theme.styles.wrapper, {width: v.WINDOW_WIDTH}]}>
-                    <Text style={[style_theme.styles.h1, {paddingVertical: 20}]}>Register a new account</Text>
+                <View style={[style_theme.styles.wrapper, { width: v.WINDOW_WIDTH }]}>
+                    <Text style={[style_theme.styles.h1, { paddingVertical: 20 }]}>Register a new account</Text>
 
                     {/* First Name */}
                     <Text style={[
-                        style_theme.styles.p, 
-                        style_register.styles.errorMessage, 
-                        ( this.state.firstnameValid !== false ) ? style_register.styles.hidden : null 
-                        ]}>
+                        style_theme.styles.p,
+                        style_register.styles.errorMessage,
+                        (this.state.firstnameValid !== false) ? style_register.styles.hidden : null
+                    ]}>
                         {this.state.firstnameErrorMessage}
                     </Text>
 
@@ -100,16 +97,16 @@ export default class RegisterForm extends Component {
                         autoCapitalize="none"
                         autoCorrect={false}
                         value={this.state.name}
-                        onChangeText={(text) => this.setState({firstname: text})}
+                        onChangeText={(text) => this.setState({ firstname: text })}
                         onBlur={(text) => this.handleInput(this.state.firstname, 'firstname')}
                     />
 
                     {/* Last Name */}
-                    <Text style={[ 
-                            style_theme.styles.p, 
-                            style_register.styles.errorMessage, 
-                            ( this.state.lastnameValid !== false ) ? style_register.styles.hidden : null 
-                        ]}>
+                    <Text style={[
+                        style_theme.styles.p,
+                        style_register.styles.errorMessage,
+                        (this.state.lastnameValid !== false) ? style_register.styles.hidden : null
+                    ]}>
                         {this.state.lastErrorMessage}
                     </Text>
 
@@ -121,16 +118,16 @@ export default class RegisterForm extends Component {
                         autoCapitalize="none"
                         autoCorrect={false}
                         value={this.state.name}
-                        onChangeText={(text) => this.setState({lastname: text})}
+                        onChangeText={(text) => this.setState({ lastname: text })}
                         onBlur={(text) => this.handleInput(this.state.lastname, 'lastname')}
                     />
 
                     {/* Email Address */}
-                    <Text style={[ 
-                        style_theme.styles.p, 
-                        style_register.styles.errorMessage, 
-                        ( this.state.emailValid !== false ) ? style_register.styles.hidden : null 
-                        ]}>
+                    <Text style={[
+                        style_theme.styles.p,
+                        style_register.styles.errorMessage,
+                        (this.state.emailValid !== false) ? style_register.styles.hidden : null
+                    ]}>
                         {this.state.emailErrorMessage}
                     </Text>
 
@@ -142,96 +139,41 @@ export default class RegisterForm extends Component {
                         autoCapitalize="none"
                         autoCorrect={false}
                         value={this.state.email}
-                        onChangeText={(text) => this.setState({email: text})}
+                        onChangeText={(text) => this.setState({ email: text })}
                         onBlur={(text) => this.handleInput(this.state.email, 'email')}
                     />
 
-                    {/* Mobile No. */}
-                    <Text style={[ 
-                        style_theme.styles.p, 
-                        style_register.styles.errorMessage, 
-                        ( this.state.mobileValid !== false ) ? style_register.styles.hidden : null 
-                        ]}>
-                        {this.state.mobileErrorMessage}
+                    {/* Mobile Number*/}
+                    <Text style={[
+                        style_theme.styles.p,
+                        style_register.styles.errorMessage,
+                        (this.state.mobileNumberValid !== false) ? style_register.styles.hidden : null
+                    ]}>
+                        {this.state.mobileNumberErrorMessage}
                     </Text>
 
-                    <TextInput style={style_theme.styles.input} // mobile
-                        placeholder={mobilePlaceholder}
+                    <TextInput style={style_theme.styles.input}
+                        placeholder={mobileNumberPlaceholder}
                         placeholderTextColor="rgba(0,0,0, 0.50)"
                         underlineColorAndroid={'transparent'}
-                        keyboardType="phone-pad"
+                        keyboardType="email-address"
                         autoCapitalize="none"
                         autoCorrect={false}
-                        maxLength={8}
-                        value={ this.state.mobile}
-                        onChangeText={(text) => this.setState({mobile: text})}
-                        onBlur={(text) => this.handleInput(this.state.mobile, 'mobile')}
+                        value={this.state.name}
+                        onChangeText={(text) => this.setState({ mobileNumber: text })}
+                        onBlur={(text) => this.handleInput(this.state.mobileNumber, 'mobileNumber')}
                     />
 
-                    {/* Date of Birth */}
-                    {/* <Text style={[ styles.errorMessage, this.state.dobError ? null : styles.hidden ]}>{this.state.dobErrorMessage}</Text> */}
-                    <Text style={[ 
-                        style_theme.styles.p, 
-                        style_register.styles.errorMessage, 
-                        ( this.state.dobValid !== false ) ? style_register.styles.hidden : null 
-                        ]}>
-                        {this.state.dobErrorMessage}
-                    </Text>
-                    <DatePicker
-                        style={style_register.styles.date}
-                        date={this.state.dob}
-                        mode="date"
-                        placeholder="Date of Birth"
-                        format="DD/MM/YYYY"
-                        minDate="01/01/1940"
-                        // maxDate= {new Date()}
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        // iconSource={{
-                        //     uri: require('../resources/img/ic_event_black_48px.svg')
-                        // }}
-                        customStyles={{
-                            dateIcon: {
-                                position: 'absolute',
-                                right: 0,
-                                top: -3,
-                                marginRight: 0
-                            },
-                            dateInput: {
-                                marginLeft: -155,
-                                marginTop: -20,
-                                borderWidth: 0,
-                                marginTop: 0,
-                            },
-                            dateText: {
-                                fontFamily: 'Open_Sans',
-                                marginTop: -15,
-                                marginLeft: -15,
-                                fontSize: v.P_FONTSIZE
-                            },
-                            placeholderText: {
-                                fontFamily: 'Open_Sans',
-                                color: "rgba(0,0,0, 0.50)",
-                                marginTop: -15,
-                                marginLeft: 0,
-                                fontSize: v.P_FONTSIZE
-                            },
-                            // ... You can check the source to find the other keys.
-                        }}
-                        onDateChange={(date) => {
-                            this.handleInput(date, 'dob')
-                        }}
 
-                    />
 
                     {/* Gender */}
                     <Text style={style_theme.styles.p}>Select your Gender</Text>
-                    <View style={{ display: 'flex', flexDirection: 'row', marginTop: 10}}>
-                        
+                    <View style={{ display: 'flex', flexDirection: 'row', marginTop: 10 }}>
+
                         <TouchableOpacity style={[
                             style_theme.styles.buttonCentered,
-                            { width: v.BUTTON_WIDTH/2 - 15, marginRight: 30 },
-                            this.state.gender === 1 ? style_register.styles.selected : style_register.styles.deselected ,
+                            { width: v.BUTTON_WIDTH / 2 - 15, marginRight: 30 },
+                            this.state.gender === 1 ? style_register.styles.selected : style_register.styles.deselected,
                         ]}
                             onPress={this.selectMale}>
                             <Text style={[style_theme.styles.buttonText, style_theme.styles.centeredText]}>Male</Text>
@@ -239,8 +181,8 @@ export default class RegisterForm extends Component {
 
                         <TouchableOpacity style={[
                             style_theme.styles.buttonCentered,
-                            { width: v.BUTTON_WIDTH/2 - 15 },
-                            this.state.gender === 0 ? style_register.styles.selected : style_register.styles.deselected ,
+                            { width: v.BUTTON_WIDTH / 2 - 15 },
+                            this.state.gender === 0 ? style_register.styles.selected : style_register.styles.deselected,
                         ]}
                             onPress={this.selectFemale}>
                             <Text style={[style_theme.styles.buttonText, style_theme.styles.centeredText]}>Female</Text>
@@ -248,11 +190,17 @@ export default class RegisterForm extends Component {
                     </View>
 
                     {/* Password */}
-                    <Text style={[ 
-                        style_theme.styles.p, 
-                        style_register.styles.errorMessage, 
-                        ( this.state.passwordValid !== false )? style_register.styles.hidden : null 
-                        ]}>
+                    <Text style={[style_theme.styles.p, { paddingVertical: 20 }]}>
+                        Password must:{"\n"}
+                        be at least 8 characters long,{"\n"}
+                        have 1 upper and lower case character,{"\n"}
+                        1 number and 1 special character</Text>
+
+                    <Text style={[
+                        style_theme.styles.p,
+                        style_register.styles.errorMessage,
+                        (this.state.passwordValid !== false) ? style_register.styles.hidden : null
+                    ]}>
                         {this.state.passwordErrorMessage}
                     </Text>
 
@@ -264,16 +212,16 @@ export default class RegisterForm extends Component {
                         autoCapitalize="none"
                         autoCorrect={false}
                         value={this.state.password}
-                        onChangeText={(text) => this.setState({password: text})}
+                        onChangeText={(text) => this.setState({ password: text })}
                         onBlur={(text) => this.handleInput(this.state.password, 'password')}
                     />
 
                     {/* Password Confirmation */}
-                    <Text style={[ 
-                        style_theme.styles.p, 
-                        style_register.styles.errorMessage, 
-                        ( this.state.passwordcValid !== false ) ? style_register.styles.hidden : null 
-                        ]}>
+                    <Text style={[
+                        style_theme.styles.p,
+                        style_register.styles.errorMessage,
+                        (this.state.passwordcValid !== false) ? style_register.styles.hidden : null
+                    ]}>
                         {this.state.passwordcErrorMessage}
                     </Text>
 
@@ -285,10 +233,10 @@ export default class RegisterForm extends Component {
                         autoCapitalize="none"
                         autoCorrect={false}
                         value={this.state.passwordc}
-                        onChangeText={(text) => this.setState({passwordc: text})}
+                        onChangeText={(text) => this.setState({ passwordc: text })}
                         onBlur={(text) => this.handleInput(this.state.passwordc, 'passwordc')}
                     />
-                    
+
                     {/* Submit Button */}
                     <Text style={[style_theme.styles.p, style_register.styles.errorMessage]}>{this.state.submissionError}</Text>
                     <TouchableOpacity style={style_theme.styles.button}
@@ -297,18 +245,18 @@ export default class RegisterForm extends Component {
                         <Text style={style_theme.styles.buttonText}>Register</Text>
                     </TouchableOpacity>
 
-                    <LoadingIndicator isLoading={this.state.isLoading}/>
-                    
+                    <LoadingIndicator isLoading={this.state.isLoading} />
+
                 </View>
             </KeyboardAwareScrollView>
         );
     }
-    
-    handleInput(text,field){
-        switch(field) {
+
+    handleInput(text, field) {
+        switch (field) {
             case 'firstname':
-                if(/[A-z]+/.test(text)) {
-                    this.setState({ 
+                if (/[A-z]+/.test(text)) {
+                    this.setState({
                         firstnameValid: true,
                         firstnameErrorMessage: ''
                     });
@@ -321,8 +269,8 @@ export default class RegisterForm extends Component {
                 }
                 break;
             case 'lastname':
-                if(/[A-z]+/.test(text)) {
-                    this.setState({ 
+                if (/[A-z]+/.test(text)) {
+                    this.setState({
                         lastnameValid: true,
                         lastnameErrorMessage: ''
 
@@ -336,8 +284,8 @@ export default class RegisterForm extends Component {
                 }
                 break;
             case 'email':
-                if(/^([\w\.\-]+)@([\w\-]+)((\.(\w){2,})+)$/.test(text)) { 
-                    this.setState({ 
+                if (/^([\w\.\-]+)@([\w\-]+)((\.(\w){2,})+)$/.test(text)) {
+                    this.setState({
                         emailValid: true,
                         emailErrorMessage: '',
                     });
@@ -349,23 +297,23 @@ export default class RegisterForm extends Component {
                     });
                 }
                 break;
-            case 'mobile':
-                if(/\d{8}/.test(text)) { 
-                    this.setState({ 
-                        mobileValid: true,
-                        mobileErrorMessage: ''
-                    });
-                } else {
-                    this.setState({
-                        mobileValid: false,
-                        mobileErrorMessage: "Please use a valid Phone Number",
-                        //mobileErrorMessage: this.state.mobile
-                    });
-                }
-                break;
+            /*  case 'mobileNumber':
+                 if (/\d{8}/.test(text)) {
+                     this.setState({
+                         mobileValid: true,
+                         mobileErrorMessage: ''
+                     });
+                 } else {
+                     this.setState({
+                         mobileValid: false,
+                         mobileErrorMessage: "Please use a valid Phone Number",
+                         //mobileErrorMessage: this.state.mobile
+                     });
+                 }
+                 break; */
             case 'password':
-                if(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(text)) { // 8 chars, 1 number, 1 Uppercase, 1 lower, 1 special and the blood of a virgin
-                    this.setState({ 
+                if (/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(text)) { // 8 chars, 1 number, 1 Uppercase, 1 lower, 1 special and the blood of a virgin
+                    this.setState({
                         passwordValid: true,
                         passwordErrorMessage: ''
 
@@ -374,14 +322,14 @@ export default class RegisterForm extends Component {
                 } else {
                     this.setState({
                         passwordValid: false,
-                        passwordErrorMessage: "Password must be at least 8 characters long, have 1 upper and lower case character, 1 number and 1 special character",
+                        passwordErrorMessage: "Does not fufill password requirements!",
                         //passwordErrorMessage: this.state.password
                     });
                 }
                 break;
             case 'passwordc':
-                if(this.state.password === text) {
-                    this.setState({ 
+                if (this.state.password === text) {
+                    this.setState({
                         passwordcValid: true,
                         passwordcErrorMessage: ''
                     });
@@ -394,17 +342,17 @@ export default class RegisterForm extends Component {
                 }
                 break;
             case 'dob':
-                this.setState({ dob:text, }, ()=> {
-                    if(text!=null){
+                this.setState({ dob: text, }, () => {
+                    if (text != null) {
                         var year = text.toString();
-                        year = year.substr(6,4);
-                        year=parseInt(year);
+                        year = year.substr(6, 4);
+                        year = parseInt(year);
                     }
-                    if(year<2018) { // TODO: set dob check
+                    if (year < 2018) { // TODO: set dob check
                         this.setState({
                             dobValid: true,
                             dobErrorMessage: '',
-    
+
                         });
                     } else {
                         this.setState({
@@ -412,7 +360,7 @@ export default class RegisterForm extends Component {
                             dobErrorMessage: "Please select a proper date"
                             // dobErrorMessage: this.state.dob
                         });
-    
+
                     }
                 });
                 break;
@@ -421,24 +369,24 @@ export default class RegisterForm extends Component {
         }
 
     }
-    
+
     selectMale = () => {
-        this.setState({gender: 1});
+        this.setState({ gender: 1 });
     }
 
     selectFemale = () => {
-        this.setState({gender: 0});
+        this.setState({ gender: 0 });
     }
 
     handleSubmit = async () => {
         // check all fields
         Keyboard.dismiss();
-        if(this.state.dob!=null){
-            this.state.dobValid=true;
+        if (this.state.dob != null) {
+            this.state.dobValid = true;
         }
-        if(
-            this.state.firstnameValid && 
-            this.state.lastnameValid && 
+        if (
+            this.state.firstnameValid &&
+            this.state.lastnameValid &&
             this.state.emailValid &&
             this.state.dobValid &&
             this.state.mobileValid &&
@@ -446,8 +394,8 @@ export default class RegisterForm extends Component {
             this.state.passwordcValid
         ) {
 
-            this.setState({submissionError: ''});
-            this.setState({isLoading: false});
+            this.setState({ submissionError: '' });
+            this.setState({ isLoading: false });
             // SUBMIT TO DATABASE
             return await fetch(api.API_SERVER_URL + api.CREATE_SHOPPER_ACCOUNT_URL, {
                 method: 'POST',
@@ -465,34 +413,34 @@ export default class RegisterForm extends Component {
                     gender: this.state.gender,
                 }),
             })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                
-                this.setState({isLoading: false});
-                // this.props.action(responseJson.session);
-                if(!responseJson.error){
-                    try {
-                        AsyncStorage.setItem('@userHashAuth:key', responseJson.session);
-                        
-                        this.props.navigator.navigate('Home', {
-                            userData: responseJson.userData
-                        });
-                    } catch (error) {
-                        this.onError('Error saving hash');
+                .then((response) => response.json())
+                .then((responseJson) => {
+
+                    this.setState({ isLoading: false });
+                    // this.props.action(responseJson.session);
+                    if (!responseJson.error) {
+                        try {
+                            AsyncStorage.setItem('@userHashAuth:key', responseJson.session);
+
+                            this.props.navigator.navigate('Home', {
+                                userData: responseJson.userData
+                            });
+                        } catch (error) {
+                            this.onError('Error saving hash');
+                        }
+                    } else {
+                        this.onError(responseJson.error);
                     }
-                }else{
-                    this.onError(responseJson.error);
-                }
-                
-            })
-            .catch((error) => {
-                this.setState({isLoading: false});
-                this.setState({submissionError: error});
-            });
+
+                })
+                .catch((error) => {
+                    this.setState({ isLoading: false });
+                    this.setState({ submissionError: error });
+                });
 
 
         } else {
-            this.setState({submissionError: 'Please fill in all fields'});
+            this.setState({ submissionError: 'Please fill in all fields' });
             // this.setState({submissionError: 
             //     ' FNAME: ' + this.state.firstnameValid + 
             //     ' LNAME: ' + this.state.lastnameValid + 
@@ -511,5 +459,6 @@ const firstnamePlaceholder = "First Name";
 const lastnamePlaceholder = "Last Name";
 const idPlaceholder = "Email address";
 const mobilePlaceholder = "Mobile No.";
-const pwPlaceholder = "Password (At least 8 Characters, At least 1 Upper and Lower Case, and a special Character) ";
+const pwPlaceholder = "Password";
 const pwcPlaceholder = "Confirm Password";
+const mobileNumberPlaceholder = "Mobile no./Telegram user"

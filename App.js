@@ -41,12 +41,15 @@ const DrawerNavigation = DrawerNavigator(
     "Your Squads": {
       screen: SquadScreen
     },
-    Profile: {
-      screen: ProfileScreen
-    },
-    Settings: {
-      screen: SettingsScreen
+    Login: {
+      screen: LoginScreen
     }
+    /*     Profile: {
+          screen: ProfileScreen
+        },
+        Settings: {
+          screen: SettingsScreen
+        } */
   },
   {
     initialRouteName: 'Home',
@@ -79,6 +82,9 @@ const StackNavigation = StackNavigator({
   DoScreen: {
     screen: DoScreen
   },
+  RegisterScreen: {
+    screen: RegisterScreen
+  }
 
 },
   {
