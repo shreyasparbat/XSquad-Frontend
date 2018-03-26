@@ -45,7 +45,7 @@ export default class HomeScreen extends Component {
 
                     <Container>
                         <View style={main_body.styles.SpotOfTheWeek}>
-                            <Text style={main_body.styles.SpotOfTheWeekFont}>Food spot of the week</Text>
+                            <Text style={main_body.styles.SpotOfTheWeekFont}>Activity of the week</Text>
                         </View>
                         <View>
                             <Image style={main_body.styles.ActivityImage} source={require("../resources/img/singapore-zam-zam-restaurant.jpg")} />
@@ -57,7 +57,7 @@ export default class HomeScreen extends Component {
                         </View>
                     </Container>
 
-                    <Container>
+                    {/* <Container>
                         <View style={main_body.styles.SpotOfTheWeek}>
                             <Text style={main_body.styles.SpotOfTheWeekFont}>Drink spot of the week </Text>
                         </View>
@@ -83,13 +83,9 @@ export default class HomeScreen extends Component {
                                 <Text style={[main_body.styles.buttonText]}>Go</Text>
                             </TouchableOpacity>
                         </View>
-                    </Container>
+                    </Container> */}
 
                 </Container>
-
-
-
-
             </Container>
 
         );

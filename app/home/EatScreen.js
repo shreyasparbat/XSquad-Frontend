@@ -11,10 +11,11 @@ import {
     BackHandler,
     ScrollView,
     TouchableHighlight,
-    ImageBackground
+    ImageBackground,
 } from 'react-native';
 import { AppLoading, Font } from 'expo';
 import { Icon, Container, Content, Left, Right, List, ListItem, Button, connectStyle, Footer, Toast } from 'native-base';
+import { DialogComponent, SlideAnimation } from 'react-native-dialog-component';
 import CustomHeader from '../components/CustomHeader';
 var style_theme = require('../stylesheets/theme');
 var main_body = require('../stylesheets/mainBody');
@@ -52,6 +53,23 @@ export default class EatScreen extends Component {
                         <Text>Price:</Text>
                         <Text>SGD8-12/hour for Adult</Text>
                         <Text>SGD6-8/hour for child</Text>
+                        <View>
+                            <Button
+                                title="Learn More"
+                                color="#841584"
+                                onPress={() => {
+                                this.dialogComponent.show();
+                                }}
+                            />
+                            <DialogComponent
+                                ref={(dialogComponent) => { this.dialogComponent = dialogComponent; }}
+                                dialogAnimation = { new SlideAnimation({ slideFrom: 'bottom' }) }
+                            >
+                                <View>
+                                    <Text>Hello</Text>
+                                </View>
+                            </DialogComponent>
+                        </View>
                     </Container>
                     <Container>
                         <TouchableHighlight style={activity_body.styles.findSquadButton} onPress={() => navigate('DrinkScreen')}>

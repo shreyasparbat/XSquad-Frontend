@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     activityImageContainer: {
         //borderWidth: 6,
         width: 375,
-        height: 308,
+        height: 250,
         flex: 0,
         opacity: 0.75
     },
