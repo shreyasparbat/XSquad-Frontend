@@ -53,33 +53,30 @@ export default class EatScreen extends Component {
                         <Text>Price:</Text>
                         <Text>SGD8-12/hour for Adult</Text>
                         <Text>SGD6-8/hour for child</Text>
-                        <View>
-                            <Button
-                                title="Learn More"
-                                color="#841584"
-                                onPress={() => {
-                                this.dialogComponent.show();
-                                }}
-                            />
-                            <DialogComponent
-                                ref={(dialogComponent) => { this.dialogComponent = dialogComponent; }}
-                                dialogAnimation = { new SlideAnimation({ slideFrom: 'bottom' }) }
-                            >
-                                <View>
-                                    <Text>Hello</Text>
-                                </View>
-                            </DialogComponent>
-                        </View>
+                        <TouchableOpacity onPress={() => {
+                            this.dialogComponent.show();
+                        }}>
+                            <View style={main_body.styles.goButton}>
+                                <Text style={[main_body.styles.buttonText]}>Learn More</Text>
+                            </View>
+                        </TouchableOpacity>
                     </Container>
                     <Container>
                         <TouchableHighlight style={activity_body.styles.findSquadButton} onPress={() => navigate('DrinkScreen')}>
                             <View>
-                                <Text style={activity_body.styles.findSquadFont}> Find a squad!</Text>
+                                <Text style={activity_body.styles.findSquadFont}>Find a squad!</Text>
                             </View>
                         </TouchableHighlight>
                     </Container>
-
                 </Container>
+                <DialogComponent
+                    ref={(dialogComponent) => { this.dialogComponent = dialogComponent; }}
+                    dialogAnimation = { new SlideAnimation({ slideFrom: 'bottom' }) }
+                >
+                    <View>
+                        <Image style={activity_body.styles.activityImageContainer} source={require("../resources/img/singapore-zam-zam-restaurant.jpg")} />
+                    </View>
+                </DialogComponent>
             </Container>
         );
     }
