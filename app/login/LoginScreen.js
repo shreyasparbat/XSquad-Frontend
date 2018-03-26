@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
-import { Platform, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, AsyncStorage, Alert, BackHandler, } from 'react-native';
+import {
+    Platform,
+    Text,
+    View,
+    Image,
+    TouchableOpacity,
+    KeyboardAvoidingView,
+    AsyncStorage,
+    Alert,
+    BackHandler,
+    TextInput,
+} from 'react-native';
 import { AppLoading, Font } from 'expo';
-import { Toast } from 'native-base';
+import { Icon, Container, Content, Left, Right, List, ListItem, Button, connectStyle, Footer, Toast } from 'native-base';
 import { NavigationActions } from 'react-navigation';
 import LoadingIndicator from '../components/LoadingIndicator';
 import LoginForm from './components/LoginForm';
 import FacebookLogin from './components/FacebookLogin';
 import GoogleLogin from './components/GoogleLogin';
 import EmailLogin from './components/EmailLogin';
+import CustomHeader from '../components/CustomHeader';
 
 // import { LinearGradient } from Expo;
 
 var api = require('../../api');
+
 var style_theme = require('../stylesheets/theme');
 var style_login = require('../stylesheets/loginScreen');
+var main_body = require('../stylesheets/mainBody');
 
 export default class LoginScreen extends Component {
     constructor(props) {
@@ -56,32 +70,63 @@ export default class LoginScreen extends Component {
     render() {
         return (
             this.state.fontLoaded ? (
-                <KeyboardAvoidingView behavior="padding" style={style_theme.styles.wrapper}>
+                <Container>
+                    <View style={main_body.styles.WhiteSpace}></View>
+                    <CustomHeader menu='yes' nav={this.props.navigation} />
+                    <KeyboardAvoidingView behavior="padding" style={style_theme.styles.wrapper}>
+                        <Container>
+                            <View style={main_body.styles.WhiteSpace}></View>
+                            <View style={main_body.styles.WhiteSpace}></View>
+                            <View style={[{ justifyContent: 'flex-end', alignItems: 'center' }]}>
+                                <Image source={require("../resources/img/login_screen_image.png")} />
+                            </View>
+                        </Container>
+                        <Container>
+                            <View style={[{ justifyContent: 'flex-end', alignItems: 'center'}]}>
+                                <TextInput style={style_theme.styles.input}
+                                    placeholder={idPlaceholder}
+                                    placeholderTextColor="rgba(0,0,0, 0.50)"
+                                    underlineColorAndroid={'transparent'}
+                                    keyboardType="email-address"
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
 
-                    {/* <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.wrapper}> */}
-                    <View style={style_theme.styles.logoContainer}>
-                        <Image
-                            source={require('../resources/img/haste-logo.png')}
-                            style={style_theme.styles.logoSmall} />
+                                    onChangeText={(username) => this.setState({ username })} />
 
-                        <Text style={style_theme.styles.h1}>Welcome to Haste</Text>
-                        <Text style={style_theme.styles.h1}>Shopping Made Easy</Text>
-                    </View>
+                                <TextInput style={[style_theme.styles.input, this.state.isForgotPassword ? { display: 'none' } : null]}
+                                    placeholder={pwPlaceholder}
+                                    placeholderTextColor="rgba(0,0,0, 0.50)"
+                                    underlineColorAndroid={'transparent'}
+                                    secureTextEntry
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
+                                    onChangeText={(password) => this.setState({ password })} />
 
-                    <FacebookLogin action={this.facebookAuth} navigator={this.props.navigation} />
-                    <GoogleLogin action={this.googleAuth} navigator={this.props.navigation} />
-                    <EmailLogin navigator={this.props.navigation} action={this.emailLoginBack} />
+                                <LoadingIndicator isLoading={this.state.isLoading} />
 
-                    <TouchableOpacity style={style_login.styles.registerRedirect}
-                        onPress={this.registerRedirect}>
-                        <Text style={style_theme.styles.p}>New User?</Text>
-                        <Text style={style_theme.styles.bold}> Sign up here </Text>
-                    </TouchableOpacity>
+                                <TouchableOpacity style={[style_theme.styles.buttonBlueLogin, this.state.isForgotPassword ? { display: 'none' } : null]}
+                                    onPress={this.login}>
+                                    <Text style={[style_theme.styles.buttonBlueText, style_theme.styles.centeredText]}>LOGIN</Text>
+                                </TouchableOpacity>
 
-                    <LoadingIndicator isLoading={this.state.isLoading} />
+                                <TouchableOpacity
+                                    onPress={this.forgotPassword}>
+                                    <Text style={style_theme.styles.p}>Forgot Password?</Text>
+                                </TouchableOpacity>
 
-                    {/* </LinearGradient>      */}
-                </KeyboardAvoidingView>
+                                <TouchableOpacity style={style_login.styles.registerRedirect}
+                                    onPress={this.registerRedirect}>
+                                    <Text style={style_theme.styles.p}>Dont have account?</Text>
+                                    <Text style={style_theme.styles.bold}> SIGN UP </Text>
+                                </TouchableOpacity>
+                            </View>
+
+                            <LoadingIndicator isLoading={this.state.isLoading} />
+                        </Container>
+                    </KeyboardAvoidingView>
+
+                </Container>
+
             ) : null
         );
 
@@ -155,70 +200,10 @@ export default class LoginScreen extends Component {
 
     }
 
-    facebookAuth = async (token) => {
-
-        this.setState({ isLoading: true });
-
-        const response = await fetch(`https://graph.facebook.com/v2.6/me?fields=id,name,picture,first_name,last_name,gender,email&access_token=${token}`);
-
-        var data = await response.json();
-
-        var gender = '-1'
-        if (data.gender) {
-            if (data.gender == 'female') {
-                gender = 0;
-            } else {
-                gender = 1;
-            }
-        }
-        return fetch(api.API_SERVER_URL + api.FB_GOOGLE_AUTH_URL, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                fb_google_account_id: data.id,
-                email: (data.email ? data.email : null), //have to make validation, cause not all facebook account allow to get their email
-                salutation: (data.gender == 'female' ? 'Mrs' : 'Mr'),
-                password: null,
-                username: (data.email ? data.email : null),
-                fullname: data.name,
-                firstname: data.first_name,
-                lastname: data.last_name,
-                gender: gender,
-                token: token,
-                avatar_file_name: data.picture.data.url ? data.picture.data.url : null,
-                login_type: 2
-            }),
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-
-                this.setState({ isLoading: false });
-                console.log(`Hi ${responseJson.message}!`);
-                // this.props.action(responseJson.session);
-                if (!responseJson.error) {
-                    try {
-                        AsyncStorage.setItem('@userHashAuth:key', responseJson.session);
-
-                        this.props.navigation.navigate('Home', {
-                            userData: responseJson.userData
-                        });
-
-                    } catch (error) {
-                        this.onError('Error saving hash');
-                    }
-                } else {
-                    this.onError(responseJson.error);
-                }
-            })
-            .catch((error) => {
-                this.setState({ isLoading: false });
-                this.onError('Facebook Auth Failed!!!');
-            });
-
-    }
-
-
 }
+
+const idPlaceholder = "Email";
+const pwPlaceholder = "Password";
+const newPwPlaceholder = "New Password";
+const newPwcPlaceholder = "Confirm New Password";
+const verifyCodePlaceholder = "Verify Code";

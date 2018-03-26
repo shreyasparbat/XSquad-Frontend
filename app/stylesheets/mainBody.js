@@ -34,12 +34,10 @@ export const styles = StyleSheet.create({
     WhiteSpace: {
         alignItems: "center",
         justifyContent: "center",
-        width: 345,
         height: 22,
         borderColor: '#ffffff',
         borderStyle: 'solid',
         borderWidth: 1,
-        borderRadius: 20,
         backgroundColor: '#ffffff',
     },
 
@@ -149,6 +147,7 @@ export const styles = StyleSheet.create({
         height: 20,
         width: 30, 
         */
+        //float: right,
         alignItems: "center",
         justifyContent: "center",
         width: 59,
