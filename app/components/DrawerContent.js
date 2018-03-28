@@ -18,7 +18,7 @@ export default class DrawerContent extends Component {
 
     constructor() {
         super();
-    
+
         // need to bind `this` to access props in handler
         this.logout = this.logout.bind(this);
     }
@@ -28,68 +28,66 @@ export default class DrawerContent extends Component {
             text: errMsg,
             position: 'bottom',
             buttonText: 'Okay'
-          })
+        })
     }
-    
+
     render() {
-        try{
+        try {
             console.log(this.props);
             this.state.userData = this.props.items[0].params.userData;
             this.setCurUser(this.state.userData);
-        }catch(err){
+        } catch (err) {
             this.logout();
         }
-        
-        return(
+
+        return (
             <View>
                 <View style={style_drawer.styles.header} >
-{/*                     <View style={style_drawer.styles.profilePicContainer}>
-                        <Image 
-                            style={style_drawer.styles.profilePic} 
-                            resizeMode='contain' 
-                            source={ 
-                                this.state.userData.avatar_file_name ? 
-                                (this.state.userData.avatar_file_name.indexOf('http') != -1? {uri: this.state.userData.avatar_file_name}:{uri: api.API_SERVER_URL+this.state.userData.avatar_file_name}) : 
-                                require("../resources/img/xsquad-logo-black.png")
-                            } 
-                        />
-                    </View>
+                    <TouchableOpacity onPress={() => {
+                        this.props.navigation.navigate('ProfileScreen');
+                    }} >
+                    </TouchableOpacity>
                     <View style={style_drawer.styles.profileTextContainer}>
                         <Text style={style_drawer.styles.profileTextName}> {this.state.userData.fullname} </Text>
-                        <Text style={style_drawer.styles.profileTextEmail}> {this.state.userData.username} </Text>
-                    </View> */}
+
+                        {/* <TouchableOpacity onPress={() => {
+                            this.props.navigation.navigate('ProfileScreen');
+                        }}>
+                            <Text style={style_drawer.styles.viewProfile}>View Profile</Text>
+                        </TouchableOpacity> */}
+                    </View>
                 </View>
-                    <View style={{
-                        height: v.WINDOW_HEIGHT - 140, 
-                        justifyContent: 'space-between'
-                    }}>
-                        <View>
-                            <DrawerItems {...this.props} />
-                        </View>
-                        
-                        <TouchableOpacity>
-                            <View style={{
-                                    display: 'flex',
-                                    // flex: 1,
-                                    marginBottom: 20,
-                                }}
-                            >
-                                {/* <MaterialIcons 
+                <View style={{
+                    height: v.WINDOW_HEIGHT - 140,
+                    justifyContent: 'space-between'
+                }}>
+                    <View>
+                        <DrawerItems {...this.props} />
+                    </View>
+
+                    <TouchableOpacity>
+                        <View style={{
+                            display: 'flex',
+                            // flex: 1,
+                            marginBottom: 20,
+                        }}
+                        >
+                            {/* <MaterialIcons 
                                     name="versions" 
                                     style={style_drawer.styles.listItemIcon} 
                                     size={24}
                                 />  */}
-                                <Text style={{color: '#c6c6c6', paddingLeft: 20}}>
-                                    App Version {packageJson.version}
-                                </Text>
-                            </View>
-                        </TouchableOpacity> 
-                    </View>
+                            <Text style={{ color: '#c6c6c6', paddingLeft: 20 }}>
+                                App Version {packageJson.version}
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
 
-    setCurUser = async (curUser) =>{
+    setCurUser = async (curUser) => {
         try {
             await AsyncStorage.setItem('@curUser', JSON.stringify(curUser));
         } catch (error) {

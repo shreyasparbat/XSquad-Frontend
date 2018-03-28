@@ -30,13 +30,13 @@ export default class RegisterForm extends Component {
         super(props);
         this.state = {
 
-            firstname: null,
-            firstnameValid: null,
-            firstnameErrorMessage: '',
+            first_name: null,
+            first_nameValid: null,
+            first_nameErrorMessage: '',
 
-            lastname: null,
-            lastnameValid: null,
-            lastnameErrorMessage: '',
+            last_name: null,
+            last_nameValid: null,
+            last_nameErrorMessage: '',
 
             email: null,
             emailValid: null,
@@ -84,42 +84,42 @@ export default class RegisterForm extends Component {
                     <Text style={[
                         style_theme.styles.p,
                         style_register.styles.errorMessage,
-                        (this.state.firstnameValid !== false) ? style_register.styles.hidden : null
+                        (this.state.first_nameValid !== false) ? style_register.styles.hidden : null
                     ]}>
-                        {this.state.firstnameErrorMessage}
+                        {this.state.first_nameErrorMessage}
                     </Text>
 
                     <TextInput style={style_theme.styles.input}
-                        placeholder={firstnamePlaceholder}
+                        placeholder={first_namePlaceholder}
                         placeholderTextColor="rgba(0,0,0, 0.50)"
                         underlineColorAndroid={'transparent'}
                         keyboardType="email-address"
                         autoCapitalize="none"
                         autoCorrect={false}
                         value={this.state.name}
-                        onChangeText={(text) => this.setState({ firstname: text })}
-                        onBlur={(text) => this.handleInput(this.state.firstname, 'firstname')}
+                        onChangeText={(text) => this.setState({ first_name: text })}
+                        onBlur={(text) => this.handleInput(this.state.first_name, 'first_name')}
                     />
 
                     {/* Last Name */}
                     <Text style={[
                         style_theme.styles.p,
                         style_register.styles.errorMessage,
-                        (this.state.lastnameValid !== false) ? style_register.styles.hidden : null
+                        (this.state.last_nameValid !== false) ? style_register.styles.hidden : null
                     ]}>
                         {this.state.lastErrorMessage}
                     </Text>
 
                     <TextInput style={style_theme.styles.input}
-                        placeholder={lastnamePlaceholder}
+                        placeholder={last_namePlaceholder}
                         placeholderTextColor="rgba(0,0,0, 0.50)"
                         underlineColorAndroid={'transparent'}
                         keyboardType="email-address"
                         autoCapitalize="none"
                         autoCorrect={false}
                         value={this.state.name}
-                        onChangeText={(text) => this.setState({ lastname: text })}
-                        onBlur={(text) => this.handleInput(this.state.lastname, 'lastname')}
+                        onChangeText={(text) => this.setState({ last_name: text })}
+                        onBlur={(text) => this.handleInput(this.state.last_name, 'last_name')}
                     />
 
                     {/* Email Address */}
@@ -239,7 +239,7 @@ export default class RegisterForm extends Component {
 
                     {/* Submit Button */}
                     <Text style={[style_theme.styles.p, style_register.styles.errorMessage]}>{this.state.submissionError}</Text>
-                    <TouchableOpacity style={style_theme.styles.button}
+                    <TouchableOpacity style={style_theme.styles.buttonBlueLogin}
                         onPress={this.handleSubmit} >
 
                         <Text style={style_theme.styles.buttonText}>Register</Text>
@@ -254,32 +254,32 @@ export default class RegisterForm extends Component {
 
     handleInput(text, field) {
         switch (field) {
-            case 'firstname':
+            case 'first_name':
                 if (/[A-z]+/.test(text)) {
                     this.setState({
-                        firstnameValid: true,
-                        firstnameErrorMessage: ''
+                        first_nameValid: true,
+                        first_nameErrorMessage: ''
                     });
                 } else {
                     this.setState({
-                        firstnameValid: false,
+                        first_nameValid: false,
                         nameErrorMessage: "Please write your full name",
-                        //firstnameErrorMessage: this.state.firstname
+                        //first_nameErrorMessage: this.state.first_name
                     });
                 }
                 break;
-            case 'lastname':
+            case 'last_name':
                 if (/[A-z]+/.test(text)) {
                     this.setState({
-                        lastnameValid: true,
-                        lastnameErrorMessage: ''
+                        last_nameValid: true,
+                        last_nameErrorMessage: ''
 
                     });
                 } else {
                     this.setState({
-                        lastnameValid: false,
+                        last_nameValid: false,
                         nameErrorMessage: "Please write your full name",
-                        //lastnameErrorMessage: this.state.lastname
+                        //last_nameErrorMessage: this.state.last_name
                     });
                 }
                 break;
@@ -381,15 +381,11 @@ export default class RegisterForm extends Component {
     handleSubmit = async () => {
         // check all fields
         Keyboard.dismiss();
-        if (this.state.dob != null) {
-            this.state.dobValid = true;
-        }
         if (
-            this.state.firstnameValid &&
-            this.state.lastnameValid &&
+            this.state.first_nameValid &&
+            this.state.last_nameValid &&
             this.state.emailValid &&
-            this.state.dobValid &&
-            this.state.mobileValid &&
+            //this.state.mobileNumberValid &&
             this.state.passwordValid &&
             this.state.passwordcValid
         ) {
@@ -397,19 +393,18 @@ export default class RegisterForm extends Component {
             this.setState({ submissionError: '' });
             this.setState({ isLoading: false });
             // SUBMIT TO DATABASE
-            return await fetch(api.API_SERVER_URL + api.CREATE_SHOPPER_ACCOUNT_URL, {
+            return await fetch(api.API_SERVER_URL + api.CREATE_USER_ACCOUNT, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    firstname: this.state.firstname,
-                    lastname: this.state.lastname,
+                    first_name: this.state.first_name,
+                    last_name: this.state.last_name,
                     email: this.state.email,
                     password: this.state.password,
-                    date_of_birth: this.state.dob.split("/").reverse().join("-"), //format date correctly for API
-                    mobile_no: this.state.mobile,
+                    mobile_number: this.state.mobileNumber,
                     gender: this.state.gender,
                 }),
             })
@@ -441,24 +436,25 @@ export default class RegisterForm extends Component {
 
         } else {
             this.setState({ submissionError: 'Please fill in all fields' });
-            // this.setState({submissionError: 
-            //     ' FNAME: ' + this.state.firstnameValid + 
-            //     ' LNAME: ' + this.state.lastnameValid + 
-            //     ' EMAIL: ' + this.state.emailValid +
-            //     ' DOB: ' + this.state.dobValid +
-            //     ' PHONE: ' + this.state.mobileValid + 
-            //     ' PASSW: ' + this.state.passwordValid +
-            //     ' PASSC: ' + this.state.passwordcValid
-            // });
+            /*             this.setState({
+                            submissionError:
+                                ' FNAME: ' + this.state.first_nameValid +
+                                ' LNAME: ' + this.state.last_nameValid +
+                                ' EMAIL: ' + this.state.emailValid +
+                                //' DOB: ' + this.state.dobValid +
+                                ' PHONE: ' + this.state.mobileNumberValid +
+                                ' PASSW: ' + this.state.passwordValid +
+                                ' PASSC: ' + this.state.passwordcValid
+                        }); */
         }
     }
 
 }
 
-const firstnamePlaceholder = "First Name";
-const lastnamePlaceholder = "Last Name";
+const first_namePlaceholder = "First Name";
+const last_namePlaceholder = "Last Name";
 const idPlaceholder = "Email address";
 const mobilePlaceholder = "Mobile No.";
 const pwPlaceholder = "Password";
 const pwcPlaceholder = "Confirm Password";
-const mobileNumberPlaceholder = "Mobile no./Telegram user"
+const mobileNumberPlaceholder = "Mobile no./ Telegram user"

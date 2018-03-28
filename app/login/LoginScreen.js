@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {
     Platform,
     Text,
@@ -10,6 +11,7 @@ import {
     Alert,
     BackHandler,
     TextInput,
+    Keyboard
 } from 'react-native';
 import { AppLoading, Font } from 'expo';
 import { Icon, Container, Content, Left, Right, List, ListItem, Button, connectStyle, Footer, Toast } from 'native-base';
@@ -36,6 +38,8 @@ export default class LoginScreen extends Component {
         this.state = {
             fontLoaded: false,
             isLoading: false,
+            email: '',
+            password: ''
         };
     }
 
@@ -70,10 +74,12 @@ export default class LoginScreen extends Component {
     render() {
         return (
             this.state.fontLoaded ? (
-                <Container>
-                    <View style={main_body.styles.WhiteSpace}></View>
-                    <CustomHeader menu='yes' nav={this.props.navigation} />
-                    <KeyboardAvoidingView behavior="padding" style={style_theme.styles.wrapper}>
+                <KeyboardAwareScrollView>
+
+                    <Container>
+                        <View style={main_body.styles.WhiteSpace}></View>
+                        <CustomHeader menu='yes' nav={this.props.navigation} />
+
                         <Container>
                             <View style={main_body.styles.WhiteSpace}></View>
                             <View style={main_body.styles.WhiteSpace}></View>
@@ -82,7 +88,7 @@ export default class LoginScreen extends Component {
                             </View>
                         </Container>
                         <Container>
-                            <View style={[{ justifyContent: 'flex-end', alignItems: 'center'}]}>
+                            <View style={[{ justifyContent: 'flex-end', alignItems: 'center' }]}>
                                 <TextInput style={style_theme.styles.input}
                                     placeholder={idPlaceholder}
                                     placeholderTextColor="rgba(0,0,0, 0.50)"
@@ -90,8 +96,7 @@ export default class LoginScreen extends Component {
                                     keyboardType="email-address"
                                     autoCapitalize="none"
                                     autoCorrect={false}
-
-                                    onChangeText={(username) => this.setState({ username })} />
+                                    onChangeText={(email) => this.setState({ email: email })} />
 
                                 <TextInput style={[style_theme.styles.input, this.state.isForgotPassword ? { display: 'none' } : null]}
                                     placeholder={pwPlaceholder}
@@ -100,18 +105,13 @@ export default class LoginScreen extends Component {
                                     secureTextEntry
                                     autoCapitalize="none"
                                     autoCorrect={false}
-                                    onChangeText={(password) => this.setState({ password })} />
+                                    onChangeText={(password) => this.setState({ password: password })} />
 
                                 <LoadingIndicator isLoading={this.state.isLoading} />
 
                                 <TouchableOpacity style={[style_theme.styles.buttonBlueLogin, this.state.isForgotPassword ? { display: 'none' } : null]}
-                                    onPress={this.login}>
+                                    onPress={this.login.bind(this)}>
                                     <Text style={[style_theme.styles.buttonBlueText, style_theme.styles.centeredText]}>LOGIN</Text>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity
-                                    onPress={this.forgotPassword}>
-                                    <Text style={style_theme.styles.p}>Forgot Password?</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity style={style_login.styles.registerRedirect}
@@ -123,22 +123,15 @@ export default class LoginScreen extends Component {
 
                             <LoadingIndicator isLoading={this.state.isLoading} />
                         </Container>
-                    </KeyboardAvoidingView>
 
-                </Container>
+
+                    </Container>
+                </KeyboardAwareScrollView>
 
             ) : null
         );
 
 
-    }
-
-    emailLoginBack = (data) => {
-        if (data == 'RegisterScreen') {
-            this.registerRedirect();
-        } else {
-            this.setAuth(data);
-        }
     }
 
     registerRedirect = () => {
@@ -198,6 +191,55 @@ export default class LoginScreen extends Component {
                 this.onError('Failed connect to server');
             });
 
+    }
+
+    login = async () => {
+        Keyboard.dismiss();
+        console.log("before if");
+        if (
+            this.state.email &&
+            this.state.password
+        ) {
+            console.log("true, fetching user data");
+            this.setState({ isLoading: true });
+            return fetch(api.API_SERVER_URL + api.USER_LOGIN, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: this.state.email,
+                    password: this.state.password
+                }),
+            })
+                .then((response) => response.json())
+                .then(async (responseJson) => {
+                    this.setState({ isLoading: false });
+                    if (!responseJson.error) {
+                        // this.goBackEmailLogin(responseJson.session);
+                        console.log(responseJson);
+                        try {
+                            await AsyncStorage.setItem('@userHashAuth:key', responseJson.session);
+                            await AsyncStorage.setItem("@userData", JSON.stringify(responseJson.userData));
+                            this.props.navigation.navigate('Home');
+                        } catch (error) {
+                            console.log(error);
+                            this.onError('Error saving hash');
+
+                        }
+                    } else {
+                        this.setState({ submissionError: responseJson.error });
+                    }
+                })
+                .catch((error) => {
+                    this.setState({ isLoading: false });
+                    this.setState({ submissionError: error });
+                });
+        } else {
+            this.setState({ submissionError: 'Please make sure you fill username and password fields' });
+        }
+        // this.props.navigator.navigate('CartScreen');
     }
 
 }

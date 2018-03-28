@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, AsyncStorage, Alert, BackHandler, } from 'react-native';
 import { AppLoading, Font } from 'expo';
-import { Toast } from 'native-base';
+import { Icon, Container, Content, Left, Right, List, ListItem, Button, connectStyle, Footer, Toast } from 'native-base';
 import { NavigationActions } from 'react-navigation';
 import LoadingIndicator from '../components/LoadingIndicator';
 
@@ -17,7 +17,6 @@ export default class SplashScreen extends Component {
 
     this.state = {
       fontLoaded: false,
-      isLoading: false,
     };
   }
 
@@ -50,30 +49,23 @@ export default class SplashScreen extends Component {
   }
 
   render() {
+
+    const { navigate } = this.props.navigation;
     return (
       this.state.fontLoaded ? (
-        <KeyboardAvoidingView behavior="padding" style={style_theme.styles.wrapper}>
 
-          {/* <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.wrapper}> */}
-          <View style={style_theme.styles.logoContainer}>
-            <Image
-              source={require('../resources/img/haste-logo.png')}
-              style={style_theme.styles.logoSmall} />
+        <Container>
+          <Image Image style={style_theme.styles.startScreenImage} source={require("../resources/img/start_screen.png")} />
+          <Text>XSquad</Text>
+          <Text>Live a life you will remember</Text>
 
-            <Text style={style_theme.styles.h1}>Welcome to Haste</Text>
-            <Text style={style_theme.styles.h1}>Shopping Made Easy</Text>
-          </View>
-
-          <TouchableOpacity style={style_login.styles.registerRedirect}
-            onPress={this.registerRedirect}>
-            <Text style={style_theme.styles.p}>New User?</Text>
-            <Text style={style_theme.styles.bold}> Sign up here </Text>
+          <TouchableOpacity style={style_theme.styles.startScreenButton} onPress={() => navigate('Home')}>
+            <Text>Get Started!</Text>
           </TouchableOpacity>
 
           <LoadingIndicator isLoading={this.state.isLoading} />
+        </Container>
 
-          {/* </LinearGradient>      */}
-        </KeyboardAvoidingView>
       ) : null
     );
 

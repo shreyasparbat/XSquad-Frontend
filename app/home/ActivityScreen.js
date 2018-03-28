@@ -9,25 +9,27 @@ import {
     AsyncStorage,
     Alert,
     BackHandler,
-    ScrollView
+    ScrollView,
+    TouchableHighlight,
+    ImageBackground,
 } from 'react-native';
 import { AppLoading, Font } from 'expo';
 import { Icon, Container, Content, Left, Right, List, ListItem, Button, connectStyle, Footer, Toast } from 'native-base';
-import EatScreen from './EatScreen';
-import DrinkScreen from './DrinkScreen';
-import DoScreen from './DoScreen';
+import { DialogComponent, SlideAnimation } from 'react-native-dialog-component';
 import CustomHeader from '../components/CustomHeader';
 var style_theme = require('../stylesheets/theme');
 var main_body = require('../stylesheets/mainBody');
+var activity_body = require('../stylesheets/activityBody');
 var api = require('../../api');
 
-export default class HomeScreen extends Component {
+
+export default class ActivityScreen extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             fontLoaded: false,
-            activities: {}
+            activity: {}
         };
     }
 
@@ -40,7 +42,7 @@ export default class HomeScreen extends Component {
             // 'Open_Sans_light': require('../resources/fonts/Open_Sans/OpenSans-Light.ttf'),
         });
 
-        await this.getActivitiesFromDatabase();
+        await this.getActivityFromDatabase();
 
         this.setState({ fontLoaded: true });
     }
@@ -49,27 +51,29 @@ export default class HomeScreen extends Component {
         return true;
     }
 
-    getActivitiesFromDatabase = async storeInfo => {
+    getActivityFromDatabase = async storeInfo => {
         this.setState({ isLoading: true });
-        return fetch(api.API_SERVER_URL + api.GET_ACTIVITIES, {
+        return fetch(api.API_SERVER_URL + api.GET_ACTIVITY_BY_ID, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-            }
+            }, body: JSON.stringify({
+                activity_id: activity_id
+            })
         })
             .then((response) => response.json())
             .then(async (responseJson) => {
                 await this.setState({ isLoading: false });
                 if (!responseJson.error) {
                     console.log("ResponseJson: " + responseJson);
-                    this.setState({ activities: responseJson });
+                    this.setState({ activity: responseJson });
                     //this.setActivities(responseJson);
-                    console.log("set state:" + this.state.activities);
+                    console.log("set state:" + this.state.activity);
                 } else {
                     this.setState({ isLoading: true });
                     if (responseJson.error === null || responseJson.error) {
-                        this.onError('No Activities');
+                        this.onError('Activity does not exist.');
                     } else {
                         this.onError(responseJson.error);
                     }
@@ -82,7 +86,7 @@ export default class HomeScreen extends Component {
             });
     }
 
-    setActivities = async (activities) => {
+    setActivity = async (activities) => {
         /*   console.log("Setting acitivities: " + activities);
           for (let i = 0; i < activities.size; i++) {
               var activity = activities[i];
@@ -98,7 +102,7 @@ export default class HomeScreen extends Component {
         }
     }
 
-    getActivities = async () => {
+    getActivity = async () => {
         try {
             const value = await AsyncStorage.getItem('@activities');
             if (value !== null) {
@@ -113,59 +117,52 @@ export default class HomeScreen extends Component {
     }
 
     render() {
+
         const { navigate } = this.props.navigation;
-        var activities_list = [];
-        console.log("This state activities: " + this.state.activities);
-        console.log("This state activities length: " + this.state.activities.length);
-
-        for (let i = 0; i < this.state.activities.length; i++) {
-            var activity = this.state.activities[i];
-            console.log("Activity " + i + " = " + activity.object + activity.activity_name, + activity.activity_id);
-            activities_list.push(
-
-                <Container>
-                    <View>
-                        <Text> {activity.activity_name} </Text>
-                        <TouchableOpacity style={main_body.styles.ActivityImage} onPress={() => navigate('ActivityScreen')}>
-
-                            {/*  ../resources/img/singapore-zam-zam-restaurant.jpg */}
-
-                            <Image style={main_body.styles.ActivityImage} source={{ uri: 'https://assets.pokemon.com/static2/_ui/img/global/three-characters.png' }} />
-                        </TouchableOpacity>
-                    </View>
-                </Container>
-            )
-        }
-
-        //console.log(activities_list);
 
         return (
-
-            <ScrollView contentContainerStyle={style_theme.styles.homescreenContentContainer}>
-                <View style={main_body.styles.WhiteSpace}></View>
-                <CustomHeader menu='yes' nav={this.props.navigation} />
+            <Container>
+                <CustomHeader style={activity_body.styles.activityHeaderFont} backButton={"yes"} showName={true} name='Food spot of the week' nav={this.props.navigation} />
                 <Container style={style_theme.styles.scrollContainter}>
-                    <View style={main_body.styles.ChooseSomething}>
-                        <Text style={main_body.styles.chooseSomethingFont}>Choose something to do</Text>
-                    </View>
-
-                    <Container>
-                        <View style={main_body.styles.SpotOfTheWeek}>
-                            <Text style={main_body.styles.SpotOfTheWeekFont}>Activities of the week</Text>
-                        </View>
-                        <View>
-                            <TouchableOpacity style={main_body.styles.ActivityImage} onPress={() => navigate('ActivityScreen')}>
-                                <Image style={main_body.styles.ActivityImage} source={require("../resources/img/activity_one.png")} />
-                            </TouchableOpacity>
-                        </View>
+                    <Container style={activity_body.styles.activityImageContainer}>
+                        <Image style={activity_body.styles.activityImageContainer} source={require("../resources/img/singapore-zam-zam-restaurant.jpg")} />
                     </Container>
-                    {activities_list}
-
-
+                    <Container style={activity_body.styles.activityInformationContainer}>
+                        <Text style={activity_body.styles.activityHeaderFont}>Zam Zam Restaurant</Text>
+                        <Text></Text>
+                        <Text>70 Stamford Road</Text>
+                        <Text>Singapore 178901</Text>
+                        <Text></Text>
+                        <Text>Open from 5PM to 12AM</Text>
+                        <Text></Text>
+                        <Text>Price:</Text>
+                        <Text>SGD8-12/hour for Adult</Text>
+                        <Text>SGD6-8/hour for child</Text>
+                        <TouchableOpacity onPress={() => {
+                            this.dialogComponent.show();
+                        }}>
+                            <View style={main_body.styles.goButton}>
+                                <Text style={[main_body.styles.buttonText]}>Learn More</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </Container>
+                    <Container>
+                        <TouchableHighlight style={activity_body.styles.findSquadButton} onPress={() => navigate('DrinkScreen')}>
+                            <View>
+                                <Text style={activity_body.styles.findSquadFont}>Find a squad!</Text>
+                            </View>
+                        </TouchableHighlight>
+                    </Container>
                 </Container>
-            </ScrollView>
-
+                <DialogComponent
+                    ref={(dialogComponent) => { this.dialogComponent = dialogComponent; }}
+                    dialogAnimation={new SlideAnimation({ slideFrom: 'bottom' })}
+                >
+                    <View>
+                        <Image style={activity_body.styles.activityImageContainer} source={require("../resources/img/singapore-zam-zam-restaurant.jpg")} />
+                    </View>
+                </DialogComponent>
+            </Container>
         );
     }
-
 }

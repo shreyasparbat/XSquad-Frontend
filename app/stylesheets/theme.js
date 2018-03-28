@@ -63,6 +63,38 @@ export const styles = StyleSheet.create({
         height: 35,
     },
 
+    homescreenContentContainer: {
+        paddingVertical: 20
+    },
+
+    logoImage: {
+        width: v.WINDOW_HEIGHT > 700 ? 480 : 400,
+        height: v.WINDOW_HEIGHT > 700 ? 480 : 400,
+        opacity: 0.2,
+        position: 'absolute',
+        top: 0,
+    },
+
+    startScreenButton: {
+        top: 580,
+        left: 150,
+        right: 150,
+        width: v.WINDOW_HEIGHT > 700 ? 480 : 400,
+        backgroundColor: 'white',
+        //borderWidth: 2,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 20,
+        marginBottom: 20,
+        position: 'absolute'
+    },
+
+    startScreenImage: {
+        width: 375,
+        height: 667,
+    },
+
     button: {
         backgroundColor: v.HASTE_COLOR,
         borderColor: v.HASTE_COLOR_DARK,

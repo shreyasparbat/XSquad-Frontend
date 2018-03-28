@@ -7,19 +7,17 @@ import LoginScreen from './app/login/LoginScreen';
 import LoginWithEmailScreen from './app/login/LoginWithEmailScreen';
 import RegisterScreen from './app/login/RegisterScreen';
 
-import HomeScreen from './app/home/HomeScreen'
-import EatScreen from './app/home/EatScreen'
-import DrinkScreen from './app/home/DrinkScreen'
-import DoScreen from './app/home/DoScreen'
+import HomeScreen from './app/home/HomeScreen';
+import EatScreen from './app/home/EatScreen';
+import DrinkScreen from './app/home/DrinkScreen';
+import DoScreen from './app/home/DoScreen';
+import ActivityScreen from './app/home/ActivityScreen';
 
 import SavedScreen from './app/saved/SavedScreen';
 import SquadScreen from './app/squad/SquadScreen';
 import ProfileScreen from './app/profile/ProfileScreen';
 import SettingsScreen from './app/settings/SettingsScreen';
-import SplashScreen from './app/screens/SplashScreen';
-
-
-
+import StartScreen from './app/screens/StartScreen';
 
 
 //import SettingsScreen from './app/screens/SettingsScreen';
@@ -44,12 +42,7 @@ const DrawerNavigation = DrawerNavigator(
     Login: {
       screen: LoginScreen
     }
-    /*     Profile: {
-          screen: ProfileScreen
-        },
-        Settings: {
-          screen: SettingsScreen
-        } */
+
   },
   {
     initialRouteName: 'Home',
@@ -64,15 +57,23 @@ const DrawerNavigation = DrawerNavigator(
 );
 
 const StackNavigation = StackNavigator({
+
+
   Home: {
     screen: DrawerNavigation,
     navigationOptions: {
       gesturesEnabled: false,
     }
   },
-  SplashScreen: {
-    screen: SplashScreen
+
+  RegisterScreen: {
+    screen: RegisterScreen
   },
+
+  ActivityScreen: {
+    screen: ActivityScreen
+  },
+
   EatScreen: {
     screen: EatScreen
   },
@@ -81,10 +82,8 @@ const StackNavigation = StackNavigator({
   },
   DoScreen: {
     screen: DoScreen
-  },
-  RegisterScreen: {
-    screen: RegisterScreen
   }
+
 
 },
   {
