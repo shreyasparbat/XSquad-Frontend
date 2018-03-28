@@ -1,3 +1,11 @@
+# XSquad-Frontend
+
+The front end code of an app I'm building for my startup. Up on IOS App store and Google Play Store soon!
+
+
+
+## React Native Instructions
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).

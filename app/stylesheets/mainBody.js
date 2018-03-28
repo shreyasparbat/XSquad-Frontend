@@ -159,6 +159,18 @@ export const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
 
+    learnMoreButton: {
+        alignItems: "center",
+        justifyContent: "center",
+        width: 80,
+        height: 26,
+        borderRadius: 5,
+        borderColor: '#ce003f',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        backgroundColor: '#ffffff',
+    },
+
     buttonText: {
         //fontFamily: 'Open_Sans',
         height: 18,

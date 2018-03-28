@@ -56,7 +56,7 @@ export default class EatScreen extends Component {
                         <TouchableOpacity onPress={() => {
                             this.dialogComponent.show();
                         }}>
-                            <View style={main_body.styles.goButton}>
+                            <View style={main_body.styles.learnMoreButton}>
                                 <Text style={[main_body.styles.buttonText]}>Learn More</Text>
                             </View>
                         </TouchableOpacity>
