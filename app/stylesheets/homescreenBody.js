@@ -6,28 +6,27 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         width: 345,
         height: 120,
-        //flex: 5,
         justifyContent: "center",
         backgroundColor: 'white',
-        //shadowColor: 'rgba(0, 0, 0, 0.16)',
-        //shadowOffset: { width: 3, height: 0 },
-        //shadowRadius: '6',
         borderColor: '#ce003f',
         borderStyle: 'solid',
         borderWidth: 1,
         borderRadius: 20,
-        //opacity: 0.25,
     },
 
     SpotOfTheWeek: {
+        left: 0,
+        right: 0,
         alignItems: "center",
         justifyContent: "center",
         width: 345,
         height: 22,
-        //borderColor: '#ce003f',
-        //borderStyle: 'solid',
-        //borderWidth: 1,
-        //borderRadius: 20,
+        backgroundColor: '#ffffff',
+    },
+    MainContainer: {
+        paddingVertical: 5,
+        alignItems: "center",
+        justifyContent: "center",
         backgroundColor: '#ffffff',
     },
 
@@ -47,49 +46,22 @@ export const styles = StyleSheet.create({
         width: 345,
         height: 18,
         color: '#ce003f',
-        //fontFamily: 'Open_Sans',
         fontSize: 14,
         fontWeight: "700",
         letterSpacing: 3,
     },
 
     chooseSomethingFont: {
-
         textAlign: "center",
-        //justifyContent: "center",
         width: 345,
         height: 18,
         color: '#ffffff',
-        //fontFamily: 'Open_Sans',
         fontSize: 14,
         fontWeight: "700",
         letterSpacing: 2,
-        /*  
-         alignItems: "center",
-         justifyContent: "center",
-         width: 337,
-         height: 18,
-         color: '#ffffff',
-         //fontFamily: 'Open_Sans',
-         //fontFamily: 'Proxima Nova',
-         fontSize: 15,
-         fontWeight: "700",
-         letterSpacing: 3, */
-    },
-
-    settingsHeaderFont: {
-        textAlign: "center",
-        justifyContent: "center",
-        width: 211,
-        height: 25,
-        color: '#ffffff',
-        fontSize: 18,
-        fontWeight: "700",
-        letterSpacing: 3,
     },
 
     ActivityImage: {
-        flex: 1,
         alignItems: "center",
         justifyContent: "center",
         width: 345,
@@ -107,7 +79,6 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 20,
         backgroundColor: '#ce003f',
-        flex: 1
     },
 
     normalFont: {
@@ -136,7 +107,6 @@ export const styles = StyleSheet.create({
     },
 
     homescreenContentContainer: {
-        paddingVertical: 20,
         flex: 1,
         justifyContent: "center",
         alignItems: "center"
@@ -148,7 +118,7 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         color: 'black',
         alignItems: "center",
-        //flex: 5,
+        flex: 5,
     },
 
     centeredText: {

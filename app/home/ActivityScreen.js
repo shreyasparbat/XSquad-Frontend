@@ -20,6 +20,7 @@ import CustomHeader from '../components/CustomHeader';
 var style_theme = require('../stylesheets/theme');
 var main_body = require('../stylesheets/mainBody');
 var activity_body = require('../stylesheets/activityBody');
+var home_body = require('../stylesheets/homescreenBody');
 var api = require('../../api');
 
 
@@ -29,20 +30,22 @@ export default class ActivityScreen extends Component {
 
         this.state = {
             fontLoaded: false,
-            activity: {}
+            activity: {},
+            activity_id: null
         };
     }
 
     async componentDidMount() {
         BackHandler.addEventListener('backPress', this.handleBackButton);
         await Font.loadAsync({
-            'Roboto_medium': require('../resources/fonts/Roboto/Roboto-Medium.ttf'),
-            // 'Open_Sans': require('../resources/fonts/Open_Sans/OpenSans-Regular.ttf'),
-            // 'Open_Sans_bold': require('../resources/fonts/Open_Sans/OpenSans-Bold.ttf'),
-            // 'Open_Sans_light': require('../resources/fonts/Open_Sans/OpenSans-Light.ttf'),
+            'Roboto_medium': require('../resources/fonts/Roboto/Roboto-Medium.ttf')
         });
+        this.setState({ fontLoaded: true });
 
-        await this.getActivityFromDatabase();
+        const activity_id = this.props.navigation.state.params.activity_id;
+        console.log("printing mount activity_id ... " + activity_id);
+        await this.getActivityFromDatabase(activity_id);
+        console.log("activity is" + JSON.stringify(this.state.activity));
 
         this.setState({ fontLoaded: true });
     }
@@ -51,27 +54,28 @@ export default class ActivityScreen extends Component {
         return true;
     }
 
-    getActivityFromDatabase = async storeInfo => {
+    getActivityFromDatabase = async (activity_id) => {
         this.setState({ isLoading: true });
+        console.log("going to fetch..");
         return fetch(api.API_SERVER_URL + api.GET_ACTIVITY_BY_ID, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             }, body: JSON.stringify({
-                activity_id: activity_id
+                activityID: activity_id
             })
         })
             .then((response) => response.json())
             .then(async (responseJson) => {
                 await this.setState({ isLoading: false });
+                //console.log("ResponseJson is " + responseJson);
                 if (!responseJson.error) {
-                    console.log("ResponseJson: " + responseJson);
                     this.setState({ activity: responseJson });
-                    //this.setActivities(responseJson);
-                    console.log("set state:" + this.state.activity);
+                    //console.log("set state:" + JSON.stringify(this.state.activity));
                 } else {
                     this.setState({ isLoading: true });
+                    console.log("getactivityfromdb error");
                     if (responseJson.error === null || responseJson.error) {
                         this.onError('Activity does not exist.');
                     } else {
@@ -82,43 +86,26 @@ export default class ActivityScreen extends Component {
             })
             .catch((error) => {
                 this.setState({ isLoading: false });
-                this.onError('Failed to get store data');
+                this.onError('Failed to get activity data');
             });
-    }
-
-    setActivity = async (activities) => {
-        /*   console.log("Setting acitivities: " + activities);
-          for (let i = 0; i < activities.size; i++) {
-              var activity = activities[i];
-              console.log("Activity " + i + " = " + activity);
-          } */
-
-        //console.log("Stringify " + JSON.stringify(activities));
-        try {
-            await AsyncStorage.setItem('@activities', activities);
-        } catch (error) {
-            console.log(error);
-            this.onError('Failed to set activities');
-        }
-    }
-
-    getActivity = async () => {
-        try {
-            const value = await AsyncStorage.getItem('@activities');
-            if (value !== null) {
-                this.setState({ activities: JSON.parse(value) })
-                //console.log("Pasring value " + JSON.parse(value));
-            }
-        } catch (error) {
-            console.log(error);
-            this.onError('Failed to get activities.');
-        }
-
+        console.log("ended without catching");
     }
 
     render() {
 
         const { navigate } = this.props.navigation;
+
+        var activity_details = [];
+        // console.log("This state activity: " + JSON.stringify(this.state.activity));
+        //console.log("Printing activity name.. " + this.state.activity.activity_name);
+        //Îconsole.log("Printing activity id.. " + this.state.activity_id);
+
+        /*         activity_details.push(
+                    <View>
+                        <Text> {this.state.activity.activity_name} </Text>
+                    </View>
+                ) */
+
 
         return (
             <Container>
@@ -128,16 +115,15 @@ export default class ActivityScreen extends Component {
                         <Image style={activity_body.styles.activityImageContainer} source={require("../resources/img/singapore-zam-zam-restaurant.jpg")} />
                     </Container>
                     <Container style={activity_body.styles.activityInformationContainer}>
-                        <Text style={activity_body.styles.activityHeaderFont}>Zam Zam Restaurant</Text>
+                        <Text style={activity_body.styles.activityHeaderFont}>{this.state.activity.activity_name}</Text>
                         <Text></Text>
-                        <Text>70 Stamford Road</Text>
-                        <Text>Singapore 178901</Text>
+                        <Text>{this.state.activity.address_line_1}</Text>
+                        <Text>{this.state.activity.address_line_2}</Text>
                         <Text></Text>
-                        <Text>Open from 5PM to 12AM</Text>
                         <Text></Text>
                         <Text>Price:</Text>
-                        <Text>SGD8-12/hour for Adult</Text>
-                        <Text>SGD6-8/hour for child</Text>
+                        <Text>SGD {this.state.activity.price_adult}/hour for Adult</Text>
+                        <Text>SGD {this.state.activity.price_child}/hour for child</Text>
                         <TouchableOpacity onPress={() => {
                             this.dialogComponent.show();
                         }}>
@@ -162,7 +148,7 @@ export default class ActivityScreen extends Component {
                         <Image style={activity_body.styles.activityImageContainer} source={require("../resources/img/singapore-zam-zam-restaurant.jpg")} />
                     </View>
                 </DialogComponent>
-            </Container>
+            </Container >
         );
     }
 }

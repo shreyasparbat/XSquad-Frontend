@@ -33,7 +33,7 @@ export default class DrawerContent extends Component {
 
     render() {
         try {
-            console.log(this.props);
+            //console.log(this.props);
             this.state.userData = this.props.items[0].params.userData;
             this.setCurUser(this.state.userData);
         } catch (err) {
