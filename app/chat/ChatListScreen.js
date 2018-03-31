@@ -9,12 +9,13 @@ import {
     AsyncStorage,
     Alert,
     BackHandler,
-    ScrollView
+    ScrollView,
+    FlatList
 } from 'react-native';
 
-import { 
-    List, 
-    ListItem 
+import {
+    List,
+    ListItem
 } from "react-native-elements";
 
 import { AppLoading, Font } from 'expo';
@@ -44,7 +45,7 @@ export default class SquadScreen extends Component {
 
         try {
             const user_id = await AsyncStorage.getItem('@userData').user_id;
-            if (user_id !== null){
+            if (user_id !== null) {
                 // We have data!!
                 console.log(user_id);
                 await this.getChatroomsForUser(user_id);
@@ -75,10 +76,11 @@ export default class SquadScreen extends Component {
             .then((response) => response.json())
             .then(async (responseJson) => {
                 await this.setState({ isLoading: false });
-                console.log("ResponseJson is " + responseJson.rowData);
+                console.log("ResponseJson is " + responseJson);
+                console.log("Row data is is " + responseJson.rowData);
                 if (!responseJson.error) {
                     this.setState({ rowData: responseJson.rowData });
-                    //console.log("set state:" + JSON.stringify(this.state.activity));
+                    console.log("set state:" + JSON.stringify(this.state.rowData));
                 } else {
                     this.setState({ isLoading: true });
                     console.log("getactivityfromdb error");
@@ -99,6 +101,8 @@ export default class SquadScreen extends Component {
 
     render() {
         const { navigate } = this.props.navigation;
+        console.log("state_userID is " + this.state.user_id);
+        console.log("state rowDATA is " + this.state.rowData);
         return (
             <Container>
                 <View style={main_body.styles.WhiteSpace}></View>
@@ -107,7 +111,7 @@ export default class SquadScreen extends Component {
                 <Container style={style_theme.styles.scrollContainter}>
                     <View style={main_body.styles.WhiteSpace}></View>
                     <View style={main_body.styles.WhiteSpace}>
-                        <Text style={main_body.styles.normalFont}>Your squads:</Text>
+                        <Text style={main_body.styles.normalFont}>{this.state.user_id} squads:</Text>
                     </View>
                 </Container>
 
@@ -118,9 +122,9 @@ export default class SquadScreen extends Component {
                             renderItem={({ item }) => (
                                 <ListItem
                                     roundAvatar
-                                    title={`${item.activity_name}`} 
+                                    title={`${item.activity_name}`}
                                     avatar={{ uri: "https://www.gravatar.com/avatar/" }}
-                                    onPress={() => navigate('ChatScreen', { 
+                                    onPress={() => navigate('ChatScreen', {
                                         chatRoomId: item.chatroom_id,
                                         activity_name: item.activity_name
                                     })}
@@ -128,7 +132,7 @@ export default class SquadScreen extends Component {
                             )}
                             keyExtractor={item => item.id}
                         />
-                    </List> 
+                    </List>
                 </Container>
             </Container>
 

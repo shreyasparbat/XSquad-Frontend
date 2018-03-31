@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { GiftedChat } from 'react-native-gifted-chat';
-import FirebaseUtil from 'FirebaseUtil';
+import FirebaseUtil from './FirebaseUtil';
 
 import CustomHeader from '../components/CustomHeader';
 
