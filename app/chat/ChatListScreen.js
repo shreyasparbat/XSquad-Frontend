@@ -31,6 +31,7 @@ export default class SquadScreen extends Component {
         this.state = {
             fontLoaded: false,
             user_id: null,
+            user_name: "XSquad_default_name",
             rowData: [],
         };
     }
@@ -43,11 +44,13 @@ export default class SquadScreen extends Component {
         this.setState({ fontLoaded: true });
 
         try {
-            const user_id = await AsyncStorage.getItem('@userData').user_id;
+            const user_info = await AsyncStorage.getItem('@userData');
             if (user_id !== null){
                 // We have data!!
-                console.log(user_id);
-                await this.getChatroomsForUser(user_id);
+                console.log(user_info);
+
+                this.state.user_name = user_info.user_name;
+                await this.getChatroomsForUser(user_info.user_id);
             }
         } catch (error) {
             // Error retrieving data: user not logged in
@@ -122,7 +125,7 @@ export default class SquadScreen extends Component {
                                     avatar={{ uri: "https://www.gravatar.com/avatar/" }}
                                     onPress={() => navigate('ChatScreen', { 
                                         chatRoomId: item.chatroom_id,
-                                        activity_name: item.activity_name
+                                        name: this.state.user_name
                                     })}
                                 />
                             )}

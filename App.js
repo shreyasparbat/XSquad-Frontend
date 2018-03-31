@@ -8,9 +8,6 @@ import LoginWithEmailScreen from './app/login/LoginWithEmailScreen';
 import RegisterScreen from './app/login/RegisterScreen';
 
 import HomeScreen from './app/home/HomeScreen';
-import EatScreen from './app/home/EatScreen';
-import DrinkScreen from './app/home/DrinkScreen';
-import DoScreen from './app/home/DoScreen';
 import ActivityScreen from './app/home/ActivityScreen';
 
 import SavedScreen from './app/saved/SavedScreen';
@@ -72,16 +69,6 @@ const StackNavigation = StackNavigator({
 
   ActivityScreen: {
     screen: ActivityScreen
-  },
-
-  EatScreen: {
-    screen: EatScreen
-  },
-  DrinkScreen: {
-    screen: DrinkScreen
-  },
-  DoScreen: {
-    screen: DoScreen
   },
   SelectNumFriendsScreen: {
     screen: SelectNumFriendsScreen
