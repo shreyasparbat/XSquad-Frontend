@@ -16,7 +16,6 @@ export default class Chat extends React.Component {
   
   render() {
     return (
-      <CustomHeader style={activity_body.styles.activityHeaderFont} backButton={"yes"} showName={true} name={this.props.activity_name} nav={this.props.navigation} />
       <GiftedChat
         messages={this.state.messages}
         onSend={(message) => {
