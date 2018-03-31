@@ -8,9 +8,6 @@ import LoginWithEmailScreen from './app/login/LoginWithEmailScreen';
 import RegisterScreen from './app/login/RegisterScreen';
 
 import HomeScreen from './app/home/HomeScreen';
-import EatScreen from './app/home/EatScreen';
-import DrinkScreen from './app/home/DrinkScreen';
-import DoScreen from './app/home/DoScreen';
 import ActivityScreen from './app/home/ActivityScreen';
 
 import SavedScreen from './app/saved/SavedScreen';
@@ -18,7 +15,7 @@ import ProfileScreen from './app/profile/ProfileScreen';
 import SettingsScreen from './app/settings/SettingsScreen';
 //import StartScreen from './app/screens/StartScreen';
 
-import SelectNumFriendsScreen from './app/squad/SelectNumFriendsScreen';
+import SelectNumFriendsScreen from './app/squad/WaitingScreen';
 import RSVPScreen from './app/squad/RSVPScreen';
 import ChatScreen from './app/chat/ChatScreen';
 import ChatListScreen from './app/chat/ChatListScreen';
@@ -74,17 +71,8 @@ const StackNavigation = StackNavigator({
     screen: ActivityScreen
   },
 
-  EatScreen: {
-    screen: EatScreen
-  },
-  DrinkScreen: {
-    screen: DrinkScreen
-  },
-  DoScreen: {
-    screen: DoScreen
-  },
-  SelectNumFriendsScreen: {
-    screen: SelectNumFriendsScreen
+  WaitingScreen: {
+    screen: WaitingScreen
   },
   RSVPScreen: {
     screen: RSVPScreen

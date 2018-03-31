@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         height: 120,
         justifyContent: "center",
         backgroundColor: 'white',
-        borderColor: '#ce003f',
+        borderColor: '#ED7D31',
         borderStyle: 'solid',
         borderWidth: 1,
         borderRadius: 20,
@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
     ActivitiesOfTheWeekFont: {
         textAlign: "center",
         justifyContent: "center",
-        color: '#ce003f',
+        color: '#ED7D31',
         fontSize: 17,
         fontWeight: "700",
         letterSpacing: 3,
@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
     SpotOfTheWeekFont: {
         textAlign: "center",
         justifyContent: "center",
-        color: '#ce003f',
+        color: '#ED7D31',
         fontSize: 17,
         height: 30,
         fontWeight: "700",
@@ -89,10 +89,10 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         height: 40,
-        borderColor: '#ce003f',
+        borderColor: '#ED7D31',
         borderStyle: 'solid',
         borderWidth: 1,
-        backgroundColor: '#ce003f',
+        backgroundColor: '#ED7D31',
     },
 
     normalFont: {
@@ -114,7 +114,7 @@ export const styles = StyleSheet.create({
         width: 59,
         height: 26,
         borderRadius: 5,
-        borderColor: '#ce003f',
+        borderColor: '#ED7D31',
         borderStyle: 'solid',
         borderWidth: 1,
         backgroundColor: '#ffffff',

@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     },
     findSquadButton: {
         //borderWidth: 2,
-        backgroundColor: '#ce003f',
+        backgroundColor: '#ED7D31',
         width: 375,
         height: 58,
         alignItems: 'center',
@@ -37,13 +37,24 @@ export const styles = StyleSheet.create({
         textAlign: "center"
     },
 
+    clickLinkFont: {
+        //position: 'absoulte',
+        color: '#ED7D31',
+        //fontFamily: 'Proxima Nova',
+        fontSize: 15,
+        height: 20,
+        fontWeight: "700",
+        letterSpacing: 4,
+        textAlign: "center"
+    },
+
     ActivityScreenButton: {
         alignItems: "center",
         justifyContent: "center",
         width: 80,
         height: 26,
         borderRadius: 5,
-        borderColor: '#ce003f',
+        borderColor: '#ED7D31',
         borderStyle: 'solid',
         borderWidth: 1,
         backgroundColor: '#ffffff',
@@ -53,7 +64,7 @@ export const styles = StyleSheet.create({
         //position: 'absoulte',
         width: 300,
         height: 24,
-        color: '#ce003f',
+        color: '#ED7D31',
         //fontFamily: 'Proxima Nova',
         fontSize: 17,
         fontWeight: "700",

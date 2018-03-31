@@ -97,7 +97,7 @@ export default class ActivityScreen extends Component {
 
         return (
             <Container>
-                <CustomHeader style={activity_body.styles.activityHeaderFont} backButton={"yes"} showName={true} name='Food spot of the week' nav={this.props.navigation} />
+                <CustomHeader style={activity_body.styles.activityHeaderFont} backButton={"yes"} nav={this.props.navigation} />
                 <Container style={style_theme.styles.scrollContainter}>
                     <Container style={activity_body.styles.activityImageContainer}>
                         <Image style={activity_body.styles.activityImageContainer} source={require("../resources/img/singapore-zam-zam-restaurant.jpg")} />
@@ -115,19 +115,20 @@ export default class ActivityScreen extends Component {
                         <TouchableOpacity onPress={() => {
                             this.dialogComponent.show();
                         }}>
-                            <Text style={[main_body.styles.buttonText]}>Click for more Info</Text>
+                            <Text style={[activity_body.styles.clickLinkFont]}>Click for more Info</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => {
                             this.dialogComponent.show();
                         }}>
-                            <Text style={[main_body.styles.buttonText]}>Check who's going!</Text>
+                            <Text style={[activity_body.styles.clickLinkFont]}>Check who's going!</Text>
                         </TouchableOpacity>
                     </Container>
                     <Container>
-                        <TouchableHighlight style={activity_body.styles.findSquadButton} onPress={() => navigate('SelectNumFriendsScreen')}>
+                        <TouchableHighlight style={activity_body.styles.findSquadButton}
+                            onPress={() => navigate('WaitingScreen')}>
                             <View>
-                                <Text style={activity_body.styles.findSquadFont}>Find a squad!</Text>
+                                <Text style={activity_body.styles.findSquadFont}>Join the fun!</Text>
                             </View>
                         </TouchableHighlight>
                     </Container>
@@ -137,7 +138,8 @@ export default class ActivityScreen extends Component {
                     dialogAnimation={new SlideAnimation({ slideFrom: 'bottom' })}
                 >
                     <View>
-                        <Image style={activity_body.styles.activityImageContainer} source={require("../resources/img/singapore-zam-zam-restaurant.jpg")} />
+                        <Image style={activity_body.styles.activityImageContainer}
+                            source={require("../resources/img/singapore-zam-zam-restaurant.jpg")} />
                     </View>
                 </DialogComponent>
             </Container >
