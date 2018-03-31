@@ -30,7 +30,7 @@ export default class HomeScreen extends Component {
 
         this.state = {
             fontLoaded: false,
-            activities: {}
+            activities: {},
         };
     }
 
@@ -80,32 +80,37 @@ export default class HomeScreen extends Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <Container>
+
+            <Container Style={home_body.styles.homescreenContentContainer}>
                 <CustomHeader menu='yes' nav={this.props.navigation} />
                 <View style={home_body.styles.ChooseSomething}>
                     <Text style={home_body.styles.chooseSomethingFont}>Choose something to do</Text>
                 </View>
                 <View style={home_body.styles.SpotOfTheWeek}>
-                    <Text style={home_body.styles.SpotOfTheWeekFont}>Activities of the week</Text>
+                    <Text style={home_body.styles.ActivitiesOfTheWeekFont}>Activities of the week</Text>
                 </View>
-                <List
-                    contentContainerStyle={home_body.styles.homescreenContentContainer}
-                    dataArray={this.state.activities}
-                    renderRow={(activity) =>
-                        <View>
-                            <Text> {activity.activity_name} </Text>
-                            <TouchableOpacity
-                                style={home_body.styles.ActivityImage}
-                                onPress={() => navigate('ActivityScreen', { activity_id: activity.activity_id })}>
-                                <Image
+                <ScrollView>
+                    <List
+                        contentContainerStyle={home_body.styles.homescreenContentContainer}
+                        dataArray={this.state.activities}
+                        renderRow={(activity) =>
+                            <View>
+                                <Text style={home_body.styles.SpotOfTheWeekFont}> {activity.activity_name} </Text>
+                                <TouchableOpacity
                                     style={home_body.styles.ActivityImage}
-                                    source={{ uri: 'https://assets.pokemon.com/static2/_ui/img/global/three-characters.png' }} />
-                            </TouchableOpacity>
-                        </View>
-                    }>
+                                    onPress={() => navigate('ActivityScreen', { activity_id: activity.activity_id })}>
+                                    <Image
+                                        style={home_body.styles.ActivityImage}
+                                        source={{ uri: 'https://assets.pokemon.com/static2/_ui/img/global/three-characters.png' }} />
+                                </TouchableOpacity>
+                                <View style={home_body.styles.SpotOfTheWeek} />
+                            </View>
+                        }>
 
-                </List>
+                    </List>
+                </ScrollView>
             </Container>
+
 
         );
     }

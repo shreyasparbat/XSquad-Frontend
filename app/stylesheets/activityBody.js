@@ -25,18 +25,28 @@ export const styles = StyleSheet.create({
         height: 58,
         alignItems: 'center',
         justifyContent: 'center',
-        flexGrow: 1, 
+        flexGrow: 1,
     },
     findSquadFont: {
         //position: 'absoulte',
-        width: 169,
-        height: 24,
         color: '#ffffff',
         //fontFamily: 'Proxima Nova',
         fontSize: 15,
         fontWeight: "700",
         letterSpacing: 4,
         textAlign: "center"
+    },
+
+    ActivityScreenButton: {
+        alignItems: "center",
+        justifyContent: "center",
+        width: 80,
+        height: 26,
+        borderRadius: 5,
+        borderColor: '#ce003f',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        backgroundColor: '#ffffff',
     },
 
     activityHeaderFont: {
