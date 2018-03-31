@@ -83,8 +83,6 @@ const StackNavigation = StackNavigator({
   DoScreen: {
     screen: DoScreen
   }
-
-
 },
   {
     //initialRouteName: 'TransactionDetailsScreen',

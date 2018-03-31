@@ -64,7 +64,7 @@ export default class EatScreen extends Component {
                     <Container>
                         <TouchableHighlight style={activity_body.styles.findSquadButton} onPress={() => navigate('DrinkScreen')}>
                             <View>
-                                <Text style={activity_body.styles.findSquadFont}>Find a squad!</Text>
+                                <Text style={activity_body.styles.findSquadFont}>Join the fun</Text>
                             </View>
                         </TouchableHighlight>
                     </Container>
