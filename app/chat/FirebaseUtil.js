@@ -9,11 +9,12 @@ class FirebaseUtil {
   */
   constructor() {
     firebase.initializeApp({
-      apiKey: "AIzaSyDC0pq_pOs2IYbMXAp8QYMy_czj4KKiYv0",
-      authDomain: "xsquad-a91f9.firebaseapp.com",
-      databaseURL: "https://xsquad-a91f9.firebaseio.com",
-      projectId: "xsquad-a91f9",
-      storageBucket: "xsquad-a91f9.appspot.com",
+      apiKey: "AIzaSyD6b-1Id5tf3IK_zQUhUlSnrnvSbGMNIhE",
+      authDomain: "chatrooms-bb327.firebaseapp.com",
+      databaseURL: "https://chatrooms-bb327.firebaseio.com",
+      projectId: "chatrooms-bb327",
+      storageBucket: "chatrooms-bb327.appspot.com",
+      messagingSenderId: "43020138522"
     });
 
     firebase.auth().onAuthStateChanged((user) => {

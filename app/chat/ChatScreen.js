@@ -3,15 +3,20 @@ import React from 'react';
 import { GiftedChat } from 'react-native-gifted-chat';
 import FirebaseUtil from 'FirebaseUtil';
 
-export default class Chat extends React.Component {
-  state = {
-    messages: [],
-  };
-  componentWillMount() {
+import CustomHeader from '../components/CustomHeader';
 
+export default class Chat extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      messages: [],
+    };
   }
+  
   render() {
     return (
+      <CustomHeader style={activity_body.styles.activityHeaderFont} backButton={"yes"} showName={true} name={this.props.activity_name} nav={this.props.navigation} />
       <GiftedChat
         messages={this.state.messages}
         onSend={(message) => {

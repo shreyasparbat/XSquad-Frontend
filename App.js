@@ -18,9 +18,10 @@ import ProfileScreen from './app/profile/ProfileScreen';
 import SettingsScreen from './app/settings/SettingsScreen';
 //import StartScreen from './app/screens/StartScreen';
 
-import SquadScreen from './app/squad/SquadScreen';
 import SelectNumFriendsScreen from './app/squad/SelectNumFriendsScreen';
 import RSVPScreen from './app/squad/RSVPScreen';
+import ChatScreen from './app/chat/ChatScreen';
+import ChatListScreen from './app/chat/ChatListScreen';
 
 
 //import SettingsScreen from './app/screens/SettingsScreen';
@@ -36,16 +37,13 @@ const DrawerNavigation = DrawerNavigator(
     Home: {
       screen: HomeScreen
     },
-    Saved: {
-      screen: SavedScreen
-    },
-    "Your Squads": {
-      screen: SquadScreen
+
+    Chats: {
+      screen: ChatListScreen
     },
     Login: {
       screen: LoginScreen
     }
-
   },
   {
     initialRouteName: 'Home',
@@ -90,6 +88,9 @@ const StackNavigation = StackNavigator({
   },
   RSVPScreen: {
     screen: RSVPScreen
+  },
+  ChatScreen: {
+    screen: ChatScreen
   }
 },
   {
