@@ -18,7 +18,7 @@ import {
 } from "react-native-elements";
 
 import { AppLoading, Font } from 'expo';
-import { Icon, Container, Content, Left, Right, List, ListItem, Button, connectStyle, Footer, Toast } from 'native-base';
+import { Icon, Container, Content, Left, Right, Button, connectStyle, Footer, Toast } from 'native-base';
 import CustomHeader from '../components/CustomHeader';
 var style_theme = require('../stylesheets/theme');
 var main_body = require('../stylesheets/mainBody');
@@ -43,12 +43,11 @@ export default class SquadScreen extends Component {
         this.setState({ fontLoaded: true });
 
         try {
-            const user_id = await AsyncStorage.getItem('user_id');
+            const user_id = await AsyncStorage.getItem('@userData').user_id;
             if (user_id !== null){
                 // We have data!!
                 console.log(user_id);
                 await this.getChatroomsForUser(user_id);
-
             }
         } catch (error) {
             // Error retrieving data: user not logged in
