@@ -235,7 +235,7 @@ export const styles = StyleSheet.create({
     EatDrinkDo: {
         // width: 6,
         //height: 54,
-        color: '#ce003f',
+        color: '#ED7D31',
         //fontFamily: 'Open_Sans',
         // fontSize: 45,
         //  fontWeight: "700"

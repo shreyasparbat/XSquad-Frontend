@@ -15,7 +15,7 @@ import ProfileScreen from './app/profile/ProfileScreen';
 import SettingsScreen from './app/settings/SettingsScreen';
 //import StartScreen from './app/screens/StartScreen';
 
-import SelectNumFriendsScreen from './app/squad/SelectNumFriendsScreen';
+import SelectNumFriendsScreen from './app/squad/WaitingScreen';
 import RSVPScreen from './app/squad/RSVPScreen';
 import ChatScreen from './app/chat/ChatScreen';
 import ChatListScreen from './app/chat/ChatListScreen';
@@ -70,8 +70,14 @@ const StackNavigation = StackNavigator({
   ActivityScreen: {
     screen: ActivityScreen
   },
+<<<<<<< HEAD
   SelectNumFriendsScreen: {
     screen: SelectNumFriendsScreen
+=======
+
+  WaitingScreen: {
+    screen: WaitingScreen
+>>>>>>> 8cd29c8a6e95a56dddc5089b1fece9bce7d28c9b
   },
   RSVPScreen: {
     screen: RSVPScreen

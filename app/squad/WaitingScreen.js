@@ -61,19 +61,21 @@ export default class ActivityScreen extends Component {
             <Container style={style_theme.styles.blackContainer}>
                 <Container style={style_theme.styles.FindNumFriendBlackContainer}>
                     <Image
-                        source={require("../resources/img/spiral_arrow.png")} />
+                        source={require("../resources/img/many_humans.png")} />
                     <Text style={activity_body.styles.findSquadFont}>
-                        Before you RSVP, let us know how many are accompanying you!
+                        Fun things are worth the wait!
                     </Text>
+                    <Text style={activity_body.styles.findSquadFont}>
+                        Check your Chats later! :D
+                    </Text>
+                    <Container style={style_theme.styles.findSquadButton}>
+                        <TouchableHighlight style={activity_body.styles.findSquadButton} onPress={() => navigate('Home')}>
+                            <View>
+                                <Text style={activity_body.styles.findSquadFont}>Return to Home</Text>
+                            </View>
+                        </TouchableHighlight>
+                    </Container>
                 </Container>
-                <Container style={style_theme.styles.findSquadButton}>
-                    <TouchableHighlight style={activity_body.styles.findSquadButton} onPress={() => navigate('Home')}>
-                        <View>
-                            <Text style={activity_body.styles.findSquadFont}>RSVP!</Text>
-                        </View>
-                    </TouchableHighlight>
-                </Container>
-
             </Container >
         );
     }

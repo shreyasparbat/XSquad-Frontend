@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
     },
     
     settingsHeaderStyle:{
-        backgroundColor: '#ce003f',
+        backgroundColor: '#ED7D31',
         width: Dimensions.get('window').width,
         zIndex: 1000000,
     },
