@@ -34,8 +34,10 @@ export default class DrawerContent extends Component {
     render() {
         try {
             //console.log(this.props);
-            this.state.userData = this.props.items[0].params.userData;
-            this.setCurUser(this.state.userData);
+            //const value = await AsyncStorage.getItem('@userData');
+            const user_data = JSON.parse(value);
+            this.state.userData = user_data;
+
         } catch (err) {
             this.logout();
         }
@@ -48,13 +50,8 @@ export default class DrawerContent extends Component {
                     }} >
                     </TouchableOpacity>
                     <View style={style_drawer.styles.profileTextContainer}>
-                        <Text style={style_drawer.styles.profileTextName}> {this.state.userData.fullname} </Text>
+                        <Text style={style_drawer.styles.profileTextName}> {this.state.userData.first_name} </Text>
 
-                        {/* <TouchableOpacity onPress={() => {
-                            this.props.navigation.navigate('ProfileScreen');
-                        }}>
-                            <Text style={style_drawer.styles.viewProfile}>View Profile</Text>
-                        </TouchableOpacity> */}
                     </View>
                 </View>
                 <View style={{
@@ -72,11 +69,6 @@ export default class DrawerContent extends Component {
                             marginBottom: 20,
                         }}
                         >
-                            {/* <MaterialIcons 
-                                    name="versions" 
-                                    style={style_drawer.styles.listItemIcon} 
-                                    size={24}
-                                />  */}
                             <Text style={{ color: '#c6c6c6', paddingLeft: 20 }}>
                                 App Version {packageJson.version}
                             </Text>
@@ -89,7 +81,10 @@ export default class DrawerContent extends Component {
 
     setCurUser = async (curUser) => {
         try {
-            await AsyncStorage.setItem('@curUser', JSON.stringify(curUser));
+            const value = await AsyncStorage.getItem('@userData');
+            const userData = JSON.parse(value);
+            const user_id = user.user_id;
+            await AsyncStorage.setItem('@curUser', JSON.stringify(userData));
         } catch (error) {
             this.onError('Failed to set user data!!!');
             console.log(error);

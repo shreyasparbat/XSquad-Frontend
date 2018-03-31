@@ -225,6 +225,13 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
 
+    blackContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: 'black',
+    },
+
     EatDrinkDo: {
         // width: 6,
         //height: 54,
@@ -233,6 +240,16 @@ export const styles = StyleSheet.create({
         // fontSize: 45,
         //  fontWeight: "700"
     },
+
+    FindNumFriendBlackContainer: {
+        width: 375,
+        height: 700
+    },
+
+    RSVPContainer: {
+        width: 375,
+        height: 200
+    }
 
 
 })

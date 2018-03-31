@@ -19,10 +19,19 @@ export const styles = StyleSheet.create({
         right: 0,
         alignItems: "center",
         justifyContent: "center",
-        width: 345,
-        height: 22,
-        backgroundColor: '#ffffff',
+        height: 30,
+        backgroundColor: 'white'
     },
+
+    ActivityOfTheWeekHead: {
+        left: 0,
+        right: 0,
+        alignItems: "center",
+        justifyContent: "center",
+        height: 45,
+        backgroundColor: 'white'
+    },
+
     MainContainer: {
         paddingVertical: 5,
         alignItems: "center",
@@ -40,23 +49,30 @@ export const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
 
-    SpotOfTheWeekFont: {
+    ActivitiesOfTheWeekFont: {
         textAlign: "center",
         justifyContent: "center",
-        width: 345,
-        height: 18,
         color: '#ce003f',
-        fontSize: 14,
+        fontSize: 17,
         fontWeight: "700",
         letterSpacing: 3,
     },
 
+    SpotOfTheWeekFont: {
+        textAlign: "center",
+        justifyContent: "center",
+        color: '#ce003f',
+        fontSize: 17,
+        height: 30,
+        fontWeight: "700",
+        letterSpacing: 3,
+    },
     chooseSomethingFont: {
         textAlign: "center",
+        justifyContent: "center",
         width: 345,
-        height: 18,
         color: '#ffffff',
-        fontSize: 14,
+        fontSize: 22,
         fontWeight: "700",
         letterSpacing: 2,
     },
@@ -72,12 +88,10 @@ export const styles = StyleSheet.create({
     ChooseSomething: {
         alignItems: "center",
         justifyContent: "center",
-        width: 345,
-        height: 24,
+        height: 40,
         borderColor: '#ce003f',
         borderStyle: 'solid',
         borderWidth: 1,
-        borderRadius: 20,
         backgroundColor: '#ce003f',
     },
 
@@ -108,8 +122,9 @@ export const styles = StyleSheet.create({
 
     homescreenContentContainer: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
+        justifyContent: "flex-start",
+        alignItems: "center",
+        backgroundColor: 'white'
     },
 
     buttonText: {

@@ -14,10 +14,13 @@ import DoScreen from './app/home/DoScreen';
 import ActivityScreen from './app/home/ActivityScreen';
 
 import SavedScreen from './app/saved/SavedScreen';
-import SquadScreen from './app/squad/SquadScreen';
 import ProfileScreen from './app/profile/ProfileScreen';
 import SettingsScreen from './app/settings/SettingsScreen';
-import StartScreen from './app/screens/StartScreen';
+//import StartScreen from './app/screens/StartScreen';
+
+import SquadScreen from './app/squad/SquadScreen';
+import SelectNumFriendsScreen from './app/squad/SelectNumFriendsScreen';
+import RSVPScreen from './app/squad/RSVPScreen';
 
 
 //import SettingsScreen from './app/screens/SettingsScreen';
@@ -65,7 +68,6 @@ const StackNavigation = StackNavigator({
       gesturesEnabled: false,
     }
   },
-
   RegisterScreen: {
     screen: RegisterScreen
   },
@@ -82,6 +84,12 @@ const StackNavigation = StackNavigator({
   },
   DoScreen: {
     screen: DoScreen
+  },
+  SelectNumFriendsScreen: {
+    screen: SelectNumFriendsScreen
+  },
+  RSVPScreen: {
+    screen: RSVPScreen
   }
 },
   {

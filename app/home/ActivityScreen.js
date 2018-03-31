@@ -95,18 +95,6 @@ export default class ActivityScreen extends Component {
 
         const { navigate } = this.props.navigation;
 
-        var activity_details = [];
-        // console.log("This state activity: " + JSON.stringify(this.state.activity));
-        //console.log("Printing activity name.. " + this.state.activity.activity_name);
-        //Îconsole.log("Printing activity id.. " + this.state.activity_id);
-
-        /*         activity_details.push(
-                    <View>
-                        <Text> {this.state.activity.activity_name} </Text>
-                    </View>
-                ) */
-
-
         return (
             <Container>
                 <CustomHeader style={activity_body.styles.activityHeaderFont} backButton={"yes"} showName={true} name='Food spot of the week' nav={this.props.navigation} />
@@ -122,18 +110,22 @@ export default class ActivityScreen extends Component {
                         <Text></Text>
                         <Text></Text>
                         <Text>Price:</Text>
-                        <Text>SGD {this.state.activity.price_adult}/hour for Adult</Text>
-                        <Text>SGD {this.state.activity.price_child}/hour for child</Text>
+                        <Text>{this.state.activity.price_adult}</Text>
+                        <Text>{this.state.activity.price_child}</Text>
                         <TouchableOpacity onPress={() => {
                             this.dialogComponent.show();
                         }}>
-                            <View style={main_body.styles.goButton}>
-                                <Text style={[main_body.styles.buttonText]}>Learn More</Text>
-                            </View>
+                            <Text style={[main_body.styles.buttonText]}>Click for more Info</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => {
+                            this.dialogComponent.show();
+                        }}>
+                            <Text style={[main_body.styles.buttonText]}>Check who's going!</Text>
                         </TouchableOpacity>
                     </Container>
                     <Container>
-                        <TouchableHighlight style={activity_body.styles.findSquadButton} onPress={() => navigate('DrinkScreen')}>
+                        <TouchableHighlight style={activity_body.styles.findSquadButton} onPress={() => navigate('SelectNumFriendsScreen')}>
                             <View>
                                 <Text style={activity_body.styles.findSquadFont}>Find a squad!</Text>
                             </View>
