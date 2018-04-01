@@ -45,12 +45,15 @@ export default class SquadScreen extends Component {
         this.setState({ fontLoaded: true });
 
         try {
-            const user_info = await AsyncStorage.getItem('@userData');
-            if (user_id !== null){
+            const u_i = await AsyncStorage.getItem('@userData');
+            const user_info = JSON.parse(u_i);
+            console.log("chatlistscrn userinfor " + user_info);
+            if (user_info != null) {
                 // We have data!!
-                console.log(user_info);
-
+                console.log("----- First console log");
+                console.log("user_info is " + user_info);
                 this.state.user_name = user_info.user_name;
+                console.log("CALLING API with user_ID = " + user_info.user_id);
                 await this.getChatroomsForUser(user_info.user_id);
             }
         } catch (error) {
@@ -73,14 +76,14 @@ export default class SquadScreen extends Component {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             }, body: JSON.stringify({
-                "user_id": user_id
+                user_id: user_id
             })
         })
             .then((response) => response.json())
             .then(async (responseJson) => {
                 await this.setState({ isLoading: false });
                 console.log("ResponseJson is " + responseJson);
-                console.log("Row data is is " + responseJson.rowData);
+                console.log("Row data is" + responseJson.rowData);
                 if (!responseJson.error) {
                     this.setState({ rowData: responseJson.rowData });
                     console.log("set state:" + JSON.stringify(this.state.rowData));
@@ -105,42 +108,34 @@ export default class SquadScreen extends Component {
     render() {
         const { navigate } = this.props.navigation;
         console.log("state_userID is " + this.state.user_id);
-        console.log("state rowDATA is " + this.state.rowData);
+        //console.log("state rowDATA is " + this.state.rowData);
         return (
-            <Container>
-                <View style={main_body.styles.WhiteSpace}></View>
+            <Container style={color = 'white'}>
                 <CustomHeader menu='yes' nav={this.props.navigation} />
 
-                <Container style={style_theme.styles.scrollContainter}>
-                    <View style={main_body.styles.WhiteSpace}></View>
-                    <View style={main_body.styles.WhiteSpace}>
-                        <Text style={main_body.styles.normalFont}>{this.state.user_id} squads:</Text>
-                    </View>
-                </Container>
+                <View style={main_body.styles.WhiteSpace}>
+                    <Text style={main_body.styles.normalFont}>Your Squads:</Text>
+                </View>
 
-                <Container style={style_theme.styles.scrollContainter}>
-                    <List>
-                        <FlatList
-                            data={this.state.rowData}
-                            renderItem={({ item }) => (
-                                <ListItem
-                                    roundAvatar
-                                    title={`${item.activity_name}`}
-                                    avatar={{ uri: "https://www.gravatar.com/avatar/" }}
-                                    onPress={() => navigate('ChatScreen', {
-                                        chatRoomId: item.chatroom_id,
-                                        name: this.state.user_name
-                                    })}
-                                />
-                            )}
-                            keyExtractor={item => item.id}
-                        />
-                    </List>
-                </Container>
+                <List>
+                    <FlatList
+                        data={this.state.rowData}
+                        renderItem={({ item }) => (
+                            <ListItem
+                                roundAvatar
+                                title={`${item.activity_name}`}
+                                avatar={{ uri: "https://www.gravatar.com/avatar/" }}
+                                onPress={() => navigate('ChatScreen', {
+                                    chatRoomId: item.chatroom_id,
+                                    name: this.state.user_name
+                                })}
+                            />
+                        )}
+                        keyExtractor={item => item.id}
+                    />
+                </List>
+
             </Container>
-
-
-
 
         );
     }

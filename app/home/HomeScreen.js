@@ -32,7 +32,7 @@ export default class HomeScreen extends Component {
     }
 
     async componentDidMount() {
-        BackHandler.addEventListener('backPress', this.handleBackButton);
+        //BackHandler.addEventListener('backPress', this.handleBackButton);
         await Font.loadAsync({
             'Roboto_medium': require('../resources/fonts/Roboto/Roboto-Medium.ttf'),
         });

@@ -17,6 +17,7 @@ import { AppLoading, Font } from 'expo';
 import { Icon, Container, Content, Left, Right, List, ListItem, Button, connectStyle, Footer, Toast } from 'native-base';
 import { DialogComponent, SlideAnimation } from 'react-native-dialog-component';
 import CustomHeader from '../components/CustomHeader';
+import { NavigationActions } from 'react-navigation';
 var style_theme = require('../stylesheets/theme');
 var main_body = require('../stylesheets/mainBody');
 var activity_body = require('../stylesheets/activityBody');
@@ -31,7 +32,8 @@ export default class ActivityScreen extends Component {
         this.state = {
             fontLoaded: false,
             activity: {},
-            activity_id: null
+            activity_id: null,
+            user_id: null
         };
     }
 
@@ -47,8 +49,16 @@ export default class ActivityScreen extends Component {
         await this.getActivityFromDatabase(activity_id);
         console.log("activity is" + JSON.stringify(this.state.activity));
 
-        this.setState({ fontLoaded: true });
+        const u_i = await AsyncStorage.getItem('@userData');
+        const user_info = JSON.parse(u_i);
+        if (user_info != null) {
+            // We have data!!
+            console.log("user_info is " + user_info);
+            this.state.user_id = user_info.user_id;
+            console.log("user ID is " + user_id);
+        }
     }
+
 
     handleBackButton() {
         return true;
@@ -126,7 +136,7 @@ export default class ActivityScreen extends Component {
                     </Container>
                     <Container>
                         <TouchableHighlight style={activity_body.styles.findSquadButton}
-                            onPress={() => navigate('WaitingScreen')}>
+                            onPress={this.rsvp.bind(this)}>
                             <View>
                                 <Text style={activity_body.styles.findSquadFont}>Join the fun!</Text>
                             </View>
@@ -144,5 +154,51 @@ export default class ActivityScreen extends Component {
                 </DialogComponent>
             </Container >
         );
+    }
+
+    rsvp = async () => {
+        console.log("rsvp start");
+        if (
+            this.state.activity_id &&
+            this.state.user_id
+        ) {
+            console.log("rsvp has activity_id " + activity_id + " and user_id " + user_id);
+            this.setState({ isLoading: true });
+            return fetch(api.API_SERVER_URL + api.POST_RSVP, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    activity_id: this.state.activity_id,
+                    user_id: this.state.user_id
+                }),
+            })
+                .then((response) => response.json())
+                .then(async (responseJson) => {
+                    this.setState({ isLoading: false });
+                    if (!responseJson.error) {
+                        try {
+                            console.log("navigating to waiting screen!");
+                            this.props.navigation.navigate('WaitingScreen');
+                        } catch (error) {
+                            console.log(error);
+                            this.onError('Error!');
+                        }
+                    } else {
+                        this.setState({ submissionError: responseJson.error });
+                    }
+                })
+                .catch((error) => {
+                    this.setState({ isLoading: false });
+                    this.setState({ submissionError: error });
+                });
+        } else {
+            console.log("navigating to login screen");
+            console.log(navigation);
+            this.props.navigation.navigate('LoginScreen');
+        }
+        // this.props.navigator.navigate('CartScreen');
     }
 }

@@ -33,13 +33,6 @@ const DrawerNavigation = DrawerNavigator(
   {
     Home: {
       screen: HomeScreen
-    },
-
-    Chats: {
-      screen: ChatListScreen
-    },
-    Login: {
-      screen: LoginScreen
     }
   },
   {
@@ -79,6 +72,10 @@ const StackNavigation = StackNavigator({
   },
   ChatScreen: {
     screen: ChatScreen
+  },
+
+  LoginScreen: {
+    screen: LoginScreen
   }
 },
   {
