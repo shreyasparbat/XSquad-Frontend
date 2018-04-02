@@ -197,8 +197,7 @@ export default class ActivityScreen extends Component {
                     dialogAnimation={new SlideAnimation({ slideFrom: 'bottom' })}
                 >
                     <View>
-                        <Image style={activity_body.styles.activityImageContainer}
-                            source={require("../resources/img/singapore-zam-zam-restaurant.jpg")} />
+                        <Image style={activity_body.styles.collateralImageContainer} source={{ uri: api.API_SERVER_URL + '/images/' + this.state.activity.activity_name + ' Info.jpg' }} />
                     </View>
                 </DialogComponent>
 
@@ -207,8 +206,8 @@ export default class ActivityScreen extends Component {
                     dialogAnimation={new SlideAnimation({ slideFrom: 'bottom' })}
                 >
 
-                    <Text style={activity_body.styles.activityHeaderFont}> People going! </Text>
-                    <ScrollView contentContainerStyle={home_body.styles.homescreenContentContainer}>
+                    <ScrollView contentContainerStyle={activity_body.styles.rsvpScrollContainer}>
+                        <Text style={activity_body.styles.coolPeopleFont}> The Cool People </Text>
                         <List
                             dataArray={this.state.rsvp_list}
                             renderRow={(user) =>
@@ -252,7 +251,7 @@ export default class ActivityScreen extends Component {
                     if (!responseJson.error) {
                         try {
                             console.log("navigating to waiting screen!");
-                            this.props.navigation.navigate('WaitingScreen');
+                            this.props.navigation.navigate('ConfirmScreen');
                         } catch (error) {
                             console.log(error);
                             this.onError('Error!');

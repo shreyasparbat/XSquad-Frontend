@@ -41,7 +41,7 @@ const DrawerNavigation = DrawerNavigator(
     drawerPosition: 'left',
     contentComponent: DrawerContent,
     contentOptions: {
-      activeTintColor: v.HASTE_COLOR,
+      activeTintColor: 'black',
       //initialRouteName: 'TransactionDetailsScreen',
       //headerMode: "none"
     }
@@ -71,6 +71,7 @@ const StackNavigation = StackNavigator({
   RSVPScreen: {
     screen: RSVPScreen
   },
+
   ChatScreen: {
     screen: ChatScreen
   },

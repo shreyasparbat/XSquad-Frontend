@@ -21,6 +21,7 @@ var style_theme = require('../stylesheets/theme');
 var main_body = require('../stylesheets/mainBody');
 var activity_body = require('../stylesheets/activityBody');
 var home_body = require('../stylesheets/homescreenBody');
+var squad_body = require('../stylesheets/squadBody');
 var api = require('../../api');
 
 
@@ -58,23 +59,30 @@ export default class ActivityScreen extends Component {
         const { navigate } = this.props.navigation;
 
         return (
-            <Container style={style_theme.styles.blackContainer}>
-                <Container style={style_theme.styles.FindNumFriendBlackContainer}>
-                    <Image
-                        source={require("../resources/img/many_humans.png")} />
-                    <Text style={activity_body.styles.findSquadFont}>
-                        Your RSVP has been recorded!
+            <Container style={squad_body.styles.confirmBlackContainer}>
+                <Container style={squad_body.styles.manyPeopleImageContainer}>
+                    <Image style={squad_body.styles.manyPeopleImage}
+                        source={{ uri: api.API_SERVER_URL + '/images/Many Humans.jpg' }} />
+                         <Text style={squad_body.styles.findSquadFont}/>
+                         <Text style={squad_body.styles.findSquadFont}/>
+                    <Text style={squad_body.styles.findSquadFont}>
+                        Your RSVP has
                     </Text>
-                    <Text style={activity_body.styles.findSquadFont}>
-                        Look forward to seeing you!
+                    <Text style={squad_body.styles.findSquadFont}>
+                       been recorded!
                     </Text>
-                    <TouchableHighlight style={activity_body.styles.findSquadButton} onPress={() => navigate('Home')}>
-                        <View>
-                            <Text style={activity_body.styles.findSquadFont}>Return to Home</Text>
-                        </View>
-                    </TouchableHighlight>
-
+                    <Text style={squad_body.styles.findSquadFont}>
+                        Look forward
+                    </Text>
+                    <Text style={squad_body.styles.findSquadFont}>
+                        to seeing you!
+                    </Text>
                 </Container>
+                <TouchableHighlight style={squad_body.styles.findSquadButton} onPress={() => navigate('Home')}>
+                    <View>
+                        <Text style={squad_body.styles.findSquadFont}>Return to Home</Text>
+                    </View>
+                </TouchableHighlight>
             </Container >
         );
     }

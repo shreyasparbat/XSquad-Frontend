@@ -35,7 +35,7 @@ export default class DrawerContent extends Component {
     render() {
         try {
             //console.log(this.props);
-            //const value = await AsyncStorage.getItem('@userData');
+            const value =  AsyncStorage.getItem('@userData');
             const user_data = JSON.parse(value);
             this.state.userData = user_data;
 
@@ -46,10 +46,6 @@ export default class DrawerContent extends Component {
         return (
             <View>
                 <View style={style_drawer.styles.header} >
-                    <TouchableOpacity onPress={() => {
-                        this.props.navigation.navigate('ProfileScreen');
-                    }} >
-                    </TouchableOpacity>
                     <View style={style_drawer.styles.profileTextContainer}>
                         <Text style={style_drawer.styles.profileTextName}> {this.state.userData.first_name} </Text>
 
