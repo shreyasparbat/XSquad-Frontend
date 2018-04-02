@@ -23,6 +23,7 @@ import { Icon, Container, Content, Left, Right, Button, connectStyle, Footer, To
 import CustomHeader from '../components/CustomHeader';
 var style_theme = require('../stylesheets/theme');
 var main_body = require('../stylesheets/mainBody');
+var home_body = require('../stylesheets/homescreenBody');
 var api = require('../../api');
 
 export default class SquadScreen extends Component {
@@ -31,7 +32,6 @@ export default class SquadScreen extends Component {
 
         this.state = {
             fontLoaded: false,
-            user_id: null,
             user_name: "XSquad_default_name",
             rowData: [],
         };
@@ -44,18 +44,21 @@ export default class SquadScreen extends Component {
         });
         this.setState({ fontLoaded: true });
 
-        try {
-            const user_info = await AsyncStorage.getItem('@userData');
-            if (user_id !== null){
-                // We have data!!
-                console.log(user_info);
-
-                this.state.user_name = user_info.user_name;
-                await this.getChatroomsForUser(user_info.user_id);
-            }
-        } catch (error) {
-            // Error retrieving data: user not logged in
+        var u_i = await AsyncStorage.getItem('@userData');
+        var user_info = JSON.parse(u_i);
+        // console.log("chatlistscrn userinfor " + user_info);
+        if (user_info != null) {
+            // We have data!!
+            // console.log("----- First console log");
+            // console.log("user_info is " + JSON.stringify(user_info));
+            this.setState({ user_name: user_info.first_name})
+            // console.log("CALLING API with user_ID = " + user_info.user_id);
+            await this.getChatroomsForUser(user_info.user_id);
+        } else {
+            console.log('Routing to log in screen');
+            this.props.navigation.navigate("LoginScreen");
         }
+
 
         this.setState({ fontLoaded: true });
     }
@@ -66,27 +69,27 @@ export default class SquadScreen extends Component {
 
     getChatroomsForUser = async (user_id) => {
         this.setState({ isLoading: true });
-        console.log("going to fetch..");
+        // console.log("going to fetch..");
         return fetch(api.API_SERVER_URL + api.LOAD_CHATROOMS, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             }, body: JSON.stringify({
-                "user_id": user_id
+                user_id: user_id
             })
         })
             .then((response) => response.json())
             .then(async (responseJson) => {
                 await this.setState({ isLoading: false });
-                console.log("ResponseJson is " + responseJson);
-                console.log("Row data is is " + responseJson.rowData);
+                // console.log("ResponseJson is " + responseJson);
+                // console.log("Chatroomid " + responseJson.rowData[0].chatroom_id);
                 if (!responseJson.error) {
-                    this.setState({ rowData: responseJson.rowData });
-                    console.log("set state:" + JSON.stringify(this.state.rowData));
+                    this.setState({ rowData: responseJson });
+                    // console.log("set state:" + JSON.stringify(this.state.rowData));
                 } else {
                     this.setState({ isLoading: true });
-                    console.log("getactivityfromdb error");
+                    // console.log("getactivityfromdb error");
                     if (responseJson.error === null || responseJson.error) {
                         this.onError('Activity does not exist.');
                     } else {
@@ -104,45 +107,57 @@ export default class SquadScreen extends Component {
 
     render() {
         const { navigate } = this.props.navigation;
-        console.log("state_userID is " + this.state.user_id);
-        console.log("state rowDATA is " + this.state.rowData);
+        console.log("rowdata is " + JSON.stringify(this.state.rowData));
+        //console.log("state rowDATA is " + this.state.rowData);
         return (
-            <Container>
-                <View style={main_body.styles.WhiteSpace}></View>
+            <Container Style={home_body.styles.homescreenContentContainer}>
                 <CustomHeader menu='yes' nav={this.props.navigation} />
 
-                <Container style={style_theme.styles.scrollContainter}>
-                    <View style={main_body.styles.WhiteSpace}></View>
-                    <View style={main_body.styles.WhiteSpace}>
-                        <Text style={main_body.styles.normalFont}>{this.state.user_id} squads:</Text>
-                    </View>
-                </Container>
+                <View style={main_body.styles.WhiteSpace}>
+                    <Text style={main_body.styles.normalFont}>Your Squads:</Text>
+                </View>
 
-                <Container style={style_theme.styles.scrollContainter}>
-                    <List>
-                        <FlatList
-                            data={this.state.rowData}
-                            renderItem={({ item }) => (
-                                
-                                <ListItem
-                                
-                                    roundAvatar
-                                    title={`${item.activity_name}`}
-                                    avatar={{ uri: "https://www.gravatar.com/avatar/" }}
-                                    onPress={() => navigate('ChatScreen', {
-                                        chatRoomId: item.chatroom_id,
-                                        name: this.state.user_name
-                                    })}
-                                />
-                            )}
-                            keyExtractor={item => item.id}
-                        />
+                {/* <ScrollView contentContainerStyle={home_body.styles.homescreenContentContainer}>
+                    <List
+                        contentContainerStyle={home_body.styles.homescreenContentContainer}
+                        dataArray={this.state.rowData}
+                        renderRow={(chatroom) =>
+                            <View>
+                                <TouchableOpacity
+                                    style={home_body.styles.ActivityImage}
+                                    onPress={() => navigate('ChatScreen', { 
+                                            chatRoomId: chatroom.chatroom_id,
+                                            name: this.state.user_name
+                                        })}>
+                                        <Text style={home_body.styles.SpotOfTheWeekFont}> {chatroom.activity_name} </Text>
+                                </TouchableOpacity>
+                                <View style={home_body.styles.SpotOfTheWeek} />
+                            </View>
+                        }>
+
                     </List>
-                </Container>
+                </ScrollView> */}
+
+                <List>
+                    <FlatList
+                        data={this.state.rowData}
+                        renderItem={({ item }) => (
+                            <ListItem
+                                key={item.chatroom_id}
+                                roundAvatar
+                                title={`${item.activity_name}`}
+                                avatar={{ uri: "https://www.gravatar.com/avatar/" }}
+                                onPress={() => navigate('ChatScreen', {
+                                    chatRoomId: item.chatroom_id,
+                                    name: this.state.user_name
+                                })}
+                            />
+                        )}
+                        keyExtractor={item => item.chatroom_id}
+                    />
+                </List>
+
             </Container>
-
-
-
 
         );
     }

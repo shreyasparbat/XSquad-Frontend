@@ -6,16 +6,13 @@ import FirebaseUtil from './FirebaseUtil';
 import CustomHeader from '../components/CustomHeader';
 
 export default class Chat extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      messages: [],
-    };
-  }
+  state = {
+    messages: [],
+  };
   
   render() {
-    console.log("Chat room id = " + this.props.chatRoomId);
+    console.log("Chat room id = " + this.props.navigation.state.params.chatRoomId);
+    console.log("Name = " + this.props.navigation.state.params.name);
     return (
       <GiftedChat
         messages={this.state.messages}
@@ -24,13 +21,13 @@ export default class Chat extends React.Component {
         }}
         user={{
           _id: FirebaseUtil.getUid(),
-          name: this.props.name,
+          name: this.props.navigation.state.params.name,
         }}
       />
     );
   }
   componentDidMount() {
-    FirebaseUtil.loadMessages(this.props.chatRoomId, (message) => {
+    FirebaseUtil.loadMessages(this.props.navigation.state.params.chatRoomId, (message) => {
       this.setState((previousState) => {
         return {
           messages: GiftedChat.append(previousState.messages, message),

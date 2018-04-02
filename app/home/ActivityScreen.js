@@ -268,6 +268,7 @@ export default class ActivityScreen extends Component {
         } else {
             console.log("navigating to login screen");
             this.props.navigation.navigate('LoginScreen');
+            console.log(this.props.navigation)
         }
         console.log("didnt go both");
         // this.props.navigator.navigate('CartScreen');

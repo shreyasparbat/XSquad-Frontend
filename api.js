@@ -1,6 +1,6 @@
 // export const API_SERVER_URL = 'http://192.168.1.4:3001'; // backend server URL
 export const API_SERVER_URL = 'http://159.89.195.107:3001'; // backend server URL
-//export const API_SERVER_URL = 'localhost:3001'; // backend server URL
+// export const API_SERVER_URL = 'localhost:3001'; // local backend server URL
 
 
 // GET requests
