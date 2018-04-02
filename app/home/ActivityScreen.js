@@ -251,13 +251,13 @@ export default class ActivityScreen extends Component {
                     if (responseJson.message == "Wait") {
                         try {
                             console.log("navigating to waiting screen!");
-                            this.props.navigation.navigate('WaitingScreen');
+                            this.props.navigation.navigate('ConfirmScreen');
                         } catch (error) {
                             console.log(error);
                             this.onError('Error!');
                         }
                     } else {
-                        this.props.navigation.navigate('ChatListScreen');
+                        this.props.navigation.navigate('Your Chats');
                     }
                 })
                 .catch((error) => {

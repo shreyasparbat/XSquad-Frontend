@@ -34,6 +34,12 @@ const DrawerNavigation = DrawerNavigator(
   {
     Home: {
       screen: HomeScreen
+    },
+    "Your Chats": {
+      screen: ChatListScreen
+    },
+    Login: {
+      screen: LoginScreen
     }
   },
   {
