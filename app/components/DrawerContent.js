@@ -12,16 +12,17 @@ var api = require('../../api');
 
 export default class DrawerContent extends Component {
 
-    state = {
-        userData: {}
-    };
-
-    constructor() {
-        super();
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            userData: {},
+            user_id: null,
+            user_name: "XSquad_default_name"
+        };
         // need to bind `this` to access props in handler
-        this.logout = this.logout.bind(this);
+        //this.logout = this.logout.bind(this);
     }
+
 
     onError(errMsg) {
         Toast.show({
@@ -34,21 +35,17 @@ export default class DrawerContent extends Component {
     render() {
         try {
             //console.log(this.props);
-            //const value = await AsyncStorage.getItem('@userData');
+            const value =  AsyncStorage.getItem('@userData');
             const user_data = JSON.parse(value);
             this.state.userData = user_data;
 
         } catch (err) {
-            this.logout();
+            //this.logout();
         }
 
         return (
             <View>
                 <View style={style_drawer.styles.header} >
-                    <TouchableOpacity onPress={() => {
-                        this.props.navigation.navigate('ProfileScreen');
-                    }} >
-                    </TouchableOpacity>
                     <View style={style_drawer.styles.profileTextContainer}>
                         <Text style={style_drawer.styles.profileTextName}> {this.state.userData.first_name} </Text>
 

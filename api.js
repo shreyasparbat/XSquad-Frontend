@@ -17,3 +17,5 @@ export const GET_ACTIVITIES = '/activityResource/getActivities/'; //all activiti
 export const GET_ACTIVITY_BY_ID = '/activityResource/getActivityByID/'; //get specific activity details
 export const FIND_SQUAD = '/chatroomResource/findSquad/'; //handle logic for joining a new group
 export const LOAD_CHATROOMS = '/chatroomResource/loadChatrooms/'; //load the chatrooms for ChatRoomListScreen.js
+export const POST_RSVP = '/activityResource/insertRSVP/';//Add RSVP
+export const GET_RSVP = '/activityResource/getRSVP/';//Get RSVP

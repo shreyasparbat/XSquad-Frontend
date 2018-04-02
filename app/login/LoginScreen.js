@@ -195,12 +195,12 @@ export default class LoginScreen extends Component {
 
     login = async () => {
         Keyboard.dismiss();
-        console.log("before if");
+        //console.log("before if");
         if (
             this.state.email &&
             this.state.password
         ) {
-            console.log("true, fetching user data");
+            //console.log("true, fetching user data");
             this.setState({ isLoading: true });
             return fetch(api.API_SERVER_URL + api.USER_LOGIN, {
                 method: 'POST',
@@ -218,12 +218,12 @@ export default class LoginScreen extends Component {
                     this.setState({ isLoading: false });
                     if (!responseJson.error) {
                         // this.goBackEmailLogin(responseJson.session);
-                        console.log(responseJson);
+                        // console.log("LOOGING RESPONSEJSON IN LOGIN METHID" + responseJson);
                         try {
                             await AsyncStorage.setItem('@userHashAuth:key', responseJson.session);
                             await AsyncStorage.setItem('@userData', JSON.stringify(responseJson.userData));
                             var ud = await AsyncStorage.getItem('@userData');
-                            console.log("PRINTING UD: " + ud);
+                            //s.log("PRINTING UD: " + ud.user_id);
                             this.props.navigation.navigate('Home');
                         } catch (error) {
                             console.log(error);

@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     },
     collateralImageContainer: {
         //borderWidth: 6,
-        width: 400,
+        width: 375,
         height: 400,
         flex: 0,
         opacity: 0.75
@@ -37,16 +37,16 @@ export const styles = StyleSheet.create({
         //borderWidth: 2,
         backgroundColor: '#ED7D31',
         width: 375,
-        height: 58,
+        height: 100,
         alignItems: 'center',
         justifyContent: 'center',
-        flexGrow: 1,
+        flex: 0,
     },
     findSquadFont: {
         //position: 'absoulte',
         color: '#ffffff',
         //fontFamily: 'Proxima Nova',
-        fontSize: 15,
+        fontSize: 18,
         fontWeight: "700",
         letterSpacing: 4,
         textAlign: "center"
@@ -75,19 +75,6 @@ export const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
 
-    activityHeaderFont: {
-        //position: 'absoulte',
-        width: 300,
-        height: 24,
-        color: '#ED7D31',
-        //fontFamily: 'Proxima Nova',
-        fontSize: 17,
-        fontWeight: "700",
-        letterSpacing: 4,
-        textAlign: "center",
-        justifyContent: "center"
-    },
-
     coolPeopleFont: {
         //position: 'absoulte',
         color: '#ED7D31',
@@ -100,13 +87,26 @@ export const styles = StyleSheet.create({
         padding: 7
     },
 
-    whoIsGoingFont: {
-        //position: 'absoulte',
-        color: 'white',
-        fontSize: 17,
-        fontWeight: "700",
-        letterSpacing: 4,
-        textAlign: "center",
-        justifyContent: "center"
+    confirmBlackContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        backgroundColor: 'black',
+    },
+
+    manyPeopleImageContainer: {
+        position: 'absolute',
+        top: 100,
+        bottom: 0
+    },
+
+    manyPeopleImage: {
+        //borderWidth: 6,
+        height: 281,
+        width: 250,
+        flex: 0,
+        padding: 50,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 })
