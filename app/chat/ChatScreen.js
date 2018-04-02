@@ -15,6 +15,7 @@ export default class Chat extends React.Component {
   }
   
   render() {
+    console.log("Chat room id = " + this.props.chatRoomId);
     return (
       <GiftedChat
         messages={this.state.messages}

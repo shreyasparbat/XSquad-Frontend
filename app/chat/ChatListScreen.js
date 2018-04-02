@@ -123,7 +123,9 @@ export default class SquadScreen extends Component {
                         <FlatList
                             data={this.state.rowData}
                             renderItem={({ item }) => (
+                                
                                 <ListItem
+                                
                                     roundAvatar
                                     title={`${item.activity_name}`}
                                     avatar={{ uri: "https://www.gravatar.com/avatar/" }}
