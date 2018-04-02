@@ -116,28 +116,6 @@ export default class SquadScreen extends Component {
                 <View style={main_body.styles.WhiteSpace}>
                     <Text style={main_body.styles.normalFont}>Your Squads:</Text>
                 </View>
-
-                {/* <ScrollView contentContainerStyle={home_body.styles.homescreenContentContainer}>
-                    <List
-                        contentContainerStyle={home_body.styles.homescreenContentContainer}
-                        dataArray={this.state.rowData}
-                        renderRow={(chatroom) =>
-                            <View>
-                                <TouchableOpacity
-                                    style={home_body.styles.ActivityImage}
-                                    onPress={() => navigate('ChatScreen', { 
-                                            chatRoomId: chatroom.chatroom_id,
-                                            name: this.state.user_name
-                                        })}>
-                                        <Text style={home_body.styles.SpotOfTheWeekFont}> {chatroom.activity_name} </Text>
-                                </TouchableOpacity>
-                                <View style={home_body.styles.SpotOfTheWeek} />
-                            </View>
-                        }>
-
-                    </List>
-                </ScrollView> */}
-
                 <List>
                     <FlatList
                         data={this.state.rowData}
