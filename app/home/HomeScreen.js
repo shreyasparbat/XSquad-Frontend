@@ -56,6 +56,7 @@ export default class HomeScreen extends Component {
             .then((response) => response.json())
             .then(async (responseJson) => {
                 await this.setState({ isLoading: false });
+                console.log("responseJson is " + responseJson);
                 if (!responseJson.error) {
                     this.setState({ activities: responseJson });
                 } else {
@@ -70,7 +71,8 @@ export default class HomeScreen extends Component {
             })
             .catch((error) => {
                 this.setState({ isLoading: false });
-                this.onError('Failed to get store data');
+                console.log(error);
+                this.onError('Failed to get Activities');
             });
     }
 

@@ -221,7 +221,9 @@ export default class LoginScreen extends Component {
                         console.log(responseJson);
                         try {
                             await AsyncStorage.setItem('@userHashAuth:key', responseJson.session);
-                            await AsyncStorage.setItem("@userData", JSON.stringify(responseJson.userData));
+                            await AsyncStorage.setItem('@userData', JSON.stringify(responseJson.userData));
+                            var ud = await AsyncStorage.getItem('@userData');
+                            console.log("PRINTING UD: " + ud);
                             this.props.navigation.navigate('Home');
                         } catch (error) {
                             console.log(error);
