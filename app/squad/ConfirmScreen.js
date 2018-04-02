@@ -66,16 +66,10 @@ export default class ActivityScreen extends Component {
                          <Text style={squad_body.styles.findSquadFont}/>
                          <Text style={squad_body.styles.findSquadFont}/>
                     <Text style={squad_body.styles.findSquadFont}>
-                        Your RSVP has
+                        Fun things are worth the wait!
                     </Text>
                     <Text style={squad_body.styles.findSquadFont}>
-                       been recorded!
-                    </Text>
-                    <Text style={squad_body.styles.findSquadFont}>
-                        Look forward
-                    </Text>
-                    <Text style={squad_body.styles.findSquadFont}>
-                        to seeing you!
+                        Check your Chats later! :D
                     </Text>
                 </Container>
                 <TouchableHighlight style={squad_body.styles.findSquadButton} onPress={() => navigate('Home')}>

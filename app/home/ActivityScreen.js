@@ -248,7 +248,7 @@ export default class ActivityScreen extends Component {
                 .then(async (responseJson) => {
                     this.setState({ isLoading: false });
                     console.log(responseJson);
-                    if (responseJson.message == "Wait") {
+                    if (responseJson.message == "Wait" || responseJson.message == "Already in waiting list") {
                         try {
                             console.log("navigating to waiting screen!");
                             this.props.navigation.navigate('ConfirmScreen');
