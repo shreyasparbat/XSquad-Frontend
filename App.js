@@ -70,14 +70,9 @@ const StackNavigation = StackNavigator({
   ActivityScreen: {
     screen: ActivityScreen
   },
-<<<<<<< HEAD
-  SelectNumFriendsScreen: {
-    screen: SelectNumFriendsScreen
-=======
 
   WaitingScreen: {
     screen: WaitingScreen
->>>>>>> 8cd29c8a6e95a56dddc5089b1fece9bce7d28c9b
   },
   RSVPScreen: {
     screen: RSVPScreen
