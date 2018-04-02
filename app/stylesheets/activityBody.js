@@ -69,6 +69,17 @@ export const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: "700",
         letterSpacing: 4,
-        textAlign: "center"
+        textAlign: "center",
+        justifyContent: "center"
+    },
+
+    whoIsGoingFont: {
+        //position: 'absoulte',
+        color: 'black',
+        fontSize: 17,
+        fontWeight: "700",
+        letterSpacing: 4,
+        textAlign: "center",
+        justifyContent: "center"
     },
 })

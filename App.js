@@ -17,6 +17,7 @@ import SettingsScreen from './app/settings/SettingsScreen';
 
 import WaitingScreen from './app/squad/WaitingScreen';
 import RSVPScreen from './app/squad/RSVPScreen';
+import ConfirmScreen from './app/squad/ConfirmScreen';
 import ChatScreen from './app/chat/ChatScreen';
 import ChatListScreen from './app/chat/ChatListScreen';
 
@@ -76,6 +77,10 @@ const StackNavigation = StackNavigator({
 
   LoginScreen: {
     screen: LoginScreen
+  },
+
+  ConfirmScreen: {
+    screen: ConfirmScreen
   }
 },
   {

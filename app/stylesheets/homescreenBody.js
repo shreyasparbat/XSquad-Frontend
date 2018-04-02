@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
     SpotOfTheWeekFont: {
         textAlign: "center",
         justifyContent: "center",
-        color: '#ED7D31',
+        color: 'black',
         fontSize: 17,
         height: 30,
         fontWeight: "700",

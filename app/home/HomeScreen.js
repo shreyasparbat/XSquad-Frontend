@@ -88,7 +88,7 @@ export default class HomeScreen extends Component {
                 <View style={home_body.styles.SpotOfTheWeek}>
                     <Text style={home_body.styles.ActivitiesOfTheWeekFont}>Activities of the week</Text>
                 </View>
-                <ScrollView>
+                <ScrollView contentContainerStyle={home_body.styles.homescreenContentContainer}>
                     <List
                         contentContainerStyle={home_body.styles.homescreenContentContainer}
                         dataArray={this.state.activities}
@@ -100,7 +100,8 @@ export default class HomeScreen extends Component {
                                     onPress={() => navigate('ActivityScreen', { activity_id: activity.activity_id })}>
                                     <Image
                                         style={home_body.styles.ActivityImage}
-                                        source={{ uri: 'https://assets.pokemon.com/static2/_ui/img/global/three-characters.png' }} />
+                                        /* source={{ uri: 'https://assets.pokemon.com/static2/_ui/img/global/three-characters.png' }} /> */
+                                        source={{ uri: api.API_SERVER_URL + '/images/' + activity.activity_name + '.jpg' }} />
                                 </TouchableOpacity>
                                 <View style={home_body.styles.SpotOfTheWeek} />
                             </View>
