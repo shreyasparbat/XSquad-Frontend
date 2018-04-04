@@ -35,7 +35,8 @@ export const styles = StyleSheet.create({
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold',
-        paddingLeft: 5
+        paddingLeft: 5,
+        padding: 3
     },
 
     profileTextEmail: {
@@ -60,7 +61,7 @@ export const styles = StyleSheet.create({
     listItemText: {
         fontWeight: 'bold',
         paddingLeft: 18,
-        color : '#c6c6c6'
+        color: '#c6c6c6'
     },
 
     sideNav: {

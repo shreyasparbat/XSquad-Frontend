@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
         //position: 'absoulte',
         color: '#ffffff',
         //fontFamily: 'Proxima Nova',
-        fontSize: 18,
+        fontSize: 14,
         fontWeight: "700",
         letterSpacing: 4,
         textAlign: "center"
@@ -96,8 +96,9 @@ export const styles = StyleSheet.create({
 
     manyPeopleImageContainer: {
         position: 'absolute',
-        top: 100,
-        bottom: 0
+        top: 5,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 
     manyPeopleImage: {

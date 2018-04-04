@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import FacebookLogin from './FacebookLogin';
-import GoogleLogin from './GoogleLogin';
 import {
     Platform,
     StyleSheet,

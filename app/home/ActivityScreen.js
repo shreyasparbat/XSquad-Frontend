@@ -186,7 +186,7 @@ export default class ActivityScreen extends Component {
                         <TouchableHighlight style={activity_body.styles.findSquadButton}
                             onPress={this.rsvp.bind(this)}>
                             <View>
-                                <Text style={activity_body.styles.findSquadFont}>Join the fun!</Text>
+                                <Text style={activity_body.styles.findSquadFont}>I'm Going!</Text>
                             </View>
                         </TouchableHighlight>
                     </Container>
@@ -230,9 +230,20 @@ export default class ActivityScreen extends Component {
         console.log("user_id is " + this.state.user_id);
         console.log("printing condition: " + (this.state.activity_id != null && this.state.user_id != null));
         if (this.state.activity_id != null && this.state.user_id != null) {
-
-            //console.log("rsvp has activity_id " + activity_id + " and user_id " + user_id);
             this.setState({ isLoading: true });
+
+            fetch(api.API_SERVER_URL + api.POST_RSVP, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "user_id": this.state.user_id,
+                    "activity_id": this.state.activity_id
+                }),
+            })
+
             return fetch(api.API_SERVER_URL + api.FIND_SQUAD, {
                 method: 'POST',
                 headers: {

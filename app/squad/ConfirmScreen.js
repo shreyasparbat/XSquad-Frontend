@@ -63,13 +63,21 @@ export default class ActivityScreen extends Component {
                 <Container style={squad_body.styles.manyPeopleImageContainer}>
                     <Image style={squad_body.styles.manyPeopleImage}
                         source={{ uri: api.API_SERVER_URL + '/images/Many Humans.jpg' }} />
-                         <Text style={squad_body.styles.findSquadFont}/>
-                         <Text style={squad_body.styles.findSquadFont}/>
+                    <Text style={squad_body.styles.findSquadFont} />
+                    <Text style={squad_body.styles.findSquadFont} />
                     <Text style={squad_body.styles.findSquadFont}>
-                        Fun things are worth the wait!
+                        Fun things
                     </Text>
                     <Text style={squad_body.styles.findSquadFont}>
-                        Check your Chats later! :D
+                        are worth the wait!
+                    </Text>
+                    <Text style={squad_body.styles.findSquadFont}>
+                    </Text>
+                    <Text style={squad_body.styles.findSquadFont}>
+                        Check your
+                    </Text>
+                    <Text style={squad_body.styles.findSquadFont}>
+                        Chats later! :D
                     </Text>
                 </Container>
                 <TouchableHighlight style={squad_body.styles.findSquadButton} onPress={() => navigate('Home')}>

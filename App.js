@@ -16,7 +16,6 @@ import SettingsScreen from './app/settings/SettingsScreen';
 //import StartScreen from './app/screens/StartScreen';
 
 import WaitingScreen from './app/squad/WaitingScreen';
-import RSVPScreen from './app/squad/RSVPScreen';
 import ConfirmScreen from './app/squad/ConfirmScreen';
 import ChatScreen from './app/chat/ChatScreen';
 import ChatListScreen from './app/chat/ChatListScreen';
@@ -38,8 +37,8 @@ const DrawerNavigation = DrawerNavigator(
     "Your Chats": {
       screen: ChatListScreen
     },
-    Login: {
-      screen: LoginScreen
+    Profile: {
+      screen: ProfileScreen
     }
   },
   {
@@ -73,9 +72,6 @@ const StackNavigation = StackNavigator({
 
   WaitingScreen: {
     screen: WaitingScreen
-  },
-  RSVPScreen: {
-    screen: RSVPScreen
   },
 
   ChatScreen: {

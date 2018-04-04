@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import DatePicker from 'react-native-datepicker'
-import FacebookLogin from './FacebookLogin';
-import GoogleLogin from './GoogleLogin';
 
 var api = require('../../../api');
 
@@ -49,13 +47,6 @@ export default class RegisterForm extends Component {
             passwordc: null,
             passwordcValid: null,
             passwordcErrorMessage: '',
-
-
-            mobileNumber: null,
-            mobileNumberValid: null,
-            mobileNumberErrorMessage: '',
-
-            gender: 1,
 
             submissionError: '',
 
@@ -143,51 +134,6 @@ export default class RegisterForm extends Component {
                         onBlur={(text) => this.handleInput(this.state.email, 'email')}
                     />
 
-                    {/* Mobile Number*/}
-                    <Text style={[
-                        style_theme.styles.p,
-                        style_register.styles.errorMessage,
-                        (this.state.mobileNumberValid !== false) ? style_register.styles.hidden : null
-                    ]}>
-                        {this.state.mobileNumberErrorMessage}
-                    </Text>
-
-                    <TextInput style={style_theme.styles.input}
-                        placeholder={mobileNumberPlaceholder}
-                        placeholderTextColor="rgba(0,0,0, 0.50)"
-                        underlineColorAndroid={'transparent'}
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        value={this.state.name}
-                        onChangeText={(text) => this.setState({ mobileNumber: text })}
-                        onBlur={(text) => this.handleInput(this.state.mobileNumber, 'mobileNumber')}
-                    />
-
-
-
-                    {/* Gender */}
-                    <Text style={style_theme.styles.p}>Select your Gender</Text>
-                    <View style={{ display: 'flex', flexDirection: 'row', marginTop: 10 }}>
-
-                        <TouchableOpacity style={[
-                            style_theme.styles.buttonCentered,
-                            { width: v.BUTTON_WIDTH / 2 - 15, marginRight: 30 },
-                            this.state.gender === 1 ? style_register.styles.selected : style_register.styles.deselected,
-                        ]}
-                            onPress={this.selectMale}>
-                            <Text style={[style_theme.styles.buttonText, style_theme.styles.centeredText]}>Male</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={[
-                            style_theme.styles.buttonCentered,
-                            { width: v.BUTTON_WIDTH / 2 - 15 },
-                            this.state.gender === 0 ? style_register.styles.selected : style_register.styles.deselected,
-                        ]}
-                            onPress={this.selectFemale}>
-                            <Text style={[style_theme.styles.buttonText, style_theme.styles.centeredText]}>Female</Text>
-                        </TouchableOpacity>
-                    </View>
 
                     {/* Password */}
                     <Text style={[style_theme.styles.p, { paddingVertical: 20 }]}>
@@ -370,14 +316,6 @@ export default class RegisterForm extends Component {
 
     }
 
-    selectMale = () => {
-        this.setState({ gender: 1 });
-    }
-
-    selectFemale = () => {
-        this.setState({ gender: 0 });
-    }
-
     handleSubmit = async () => {
         // check all fields
         Keyboard.dismiss();
@@ -404,8 +342,6 @@ export default class RegisterForm extends Component {
                     last_name: this.state.last_name,
                     email: this.state.email,
                     password: this.state.password,
-                    mobile_number: this.state.mobileNumber,
-                    gender: this.state.gender,
                 }),
             })
                 .then((response) => response.json())

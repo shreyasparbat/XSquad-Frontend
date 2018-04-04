@@ -18,9 +18,6 @@ import { Icon, Container, Content, Left, Right, List, ListItem, Button, connectS
 import { NavigationActions } from 'react-navigation';
 import LoadingIndicator from '../components/LoadingIndicator';
 import LoginForm from './components/LoginForm';
-import FacebookLogin from './components/FacebookLogin';
-import GoogleLogin from './components/GoogleLogin';
-import EmailLogin from './components/EmailLogin';
 import CustomHeader from '../components/CustomHeader';
 
 // import { LinearGradient } from Expo;

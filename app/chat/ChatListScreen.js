@@ -82,14 +82,10 @@ export default class SquadScreen extends Component {
             .then((response) => response.json())
             .then(async (responseJson) => {
                 await this.setState({ isLoading: false });
-                // console.log("ResponseJson is " + responseJson);
-                // console.log("Chatroomid " + responseJson.rowData[0].chatroom_id);
                 if (!responseJson.error) {
                     this.setState({ rowData: responseJson });
-                    // console.log("set state:" + JSON.stringify(this.state.rowData));
                 } else {
                     this.setState({ isLoading: true });
-                    // console.log("getactivityfromdb error");
                     if (responseJson.error === null || responseJson.error) {
                         this.onError('Activity does not exist.');
                     } else {
