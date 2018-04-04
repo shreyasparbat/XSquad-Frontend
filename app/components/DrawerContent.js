@@ -69,7 +69,6 @@ export default class DrawerContent extends Component {
             );
         }
 
-
         return (
             <View>
                 {user_info}

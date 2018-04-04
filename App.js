@@ -36,9 +36,6 @@ const DrawerNavigation = DrawerNavigator(
     },
     "Your Chats": {
       screen: ChatListScreen
-    },
-    Profile: {
-      screen: ProfileScreen
     }
   },
   {
